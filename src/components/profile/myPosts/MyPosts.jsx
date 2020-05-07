@@ -1,23 +1,24 @@
 import React from 'react';
-import Post from '../post/Post';
-// import s from './MyPosts.module.sass';
+import Post from './post/Post';
+import s from './MyPosts.module.sass';
 
 const MyPosts = () => {
     return (
-      <>
+      <div className={s.content}>
+        <h3>My posts</h3>
         <div>
-          My posts
+          <div>
+            <textarea></textarea>
+          </div>
+          <div>
+            <button>Add post</button>
+          </div>
         </div>
-        <div>
-          New post
-        </div>
-        <textarea></textarea>
-        <button>Add post</button>
-        <div className="posts">
+        <div className={s.posts}>
           <Post message="Hi there!" likes='5'/> 
           <Post message="How are you?" likes='12'/>
         </div>  
-      </>
+      </div>
     );
 }
 export default MyPosts;

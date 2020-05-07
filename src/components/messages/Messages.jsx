@@ -2,40 +2,37 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Messages.module.sass';
 
+const DialogsItem = ({name, id}) => {
+  return (
+    <div className={`${s.dialogsItem} ${s.active}`}>
+      <NavLink to={`/messages/${id}`}>{name}</NavLink>
+    </div>
+  );
+}
+
+const MessagesItem = ({text}) => {
+  return (
+    <div className={s.messagesItem}>
+      <NavLink to=''>{text}</NavLink>
+    </div>
+  );
+}
 
 const Messages = () => {
     return (
       <div className={s.content}>
         <div className={s.dialogs}>
-          <div className={`${s.dialogsItem} ${s.active}`}>
-            <NavLink to='/messages/1'>Argon</NavLink>
-          </div>
-          <div className={s.dialogsItem}>
-            <NavLink to='/messages/2'>Butan</NavLink>
-          </div>
-          <div className={s.dialogsItem}>
-            <NavLink to='/messages/3'>Neon</NavLink>
-          </div>
-          <div className={s.dialogsItem}>
-            <NavLink to='/messages/4'>Crypton</NavLink>
-          </div>
-          <div className={s.dialogsItem}>
-            <NavLink to='/messages/5'>Helium</NavLink>
-          </div>
-          <div className={s.dialogsItem}>
-            <NavLink to='/messages/6'>Oxygen</NavLink>
-          </div> 
+          <DialogsItem name="Argon" id="1"/>
+          <DialogsItem name="Butan" id="2"/>
+          <DialogsItem name="Neon" id="3"/>
+          <DialogsItem name="Crypton" id="4"/>
+          <DialogsItem name="Helium" id="5"/>
+          <DialogsItem name="Oxygen" id="6"/>
         </div>
         <div className={s.messages}>
-          <div className={s.messagesItem}>
-            <NavLink to=''>Hello people.</NavLink>
-          </div>
-          <div className={s.messagesItem}>
-            <NavLink to=''>Learning Rect?</NavLink>
-          </div>
-          <div className={s.messagesItem}>
-            <NavLink to=''>Viel Spass!</NavLink>
-          </div>
+          <MessagesItem text="Hello people."/>
+          <MessagesItem text="Learning Rect??"/>
+          <MessagesItem text="Viel Spass!"/>
         </div>
       </div>  
     );

@@ -4,10 +4,12 @@ import s from './MyPosts.module.sass';
 
 const MyPosts = () => {
 
-  let postsData = [
+  let posts = [
     {id: 1, text: 'Hi there!', like: 5},
     {id: 2, text: 'How are you?', like: 12}
   ];
+  let postsElements = posts
+    .map(p =>  <Post message={p.text} likes={p.like} id={p.id}/>);
 
   return (
     <div className={s.content}>
@@ -21,8 +23,7 @@ const MyPosts = () => {
         </div>
       </div>
       <div className={s.posts}>
-        <Post message={postsData[0].text} likes={postsData[0].like} id={postsData[0].id}/> 
-        <Post message={postsData[1].text} likes={postsData[1].like} id={postsData[1].id}/>
+        {postsElements}
       </div>  
     </div>
   );

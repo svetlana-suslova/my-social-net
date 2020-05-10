@@ -3,12 +3,12 @@ import DialogsItem from './dialogsItem/DialogsItem';
 import MessagesItem from './messagesItem/MessagesItem';
 import s from './Messages.module.sass';
 
-const Messages = ({dialogs, messages}) => {
+const Messages = ({state}) => {
 
-  let dialogsElements = dialogs
+  let dialogsElements = state.dialogs
     .map(d => <DialogsItem name={d.name} id={d.id} />);
   
-  let messagesElements = messages
+  let messagesElements = state.messages
     .map(m => <MessagesItem text={m.text} id={m.id}/>);
 
     return (

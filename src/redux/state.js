@@ -1,5 +1,5 @@
-import {rerenderEntireTree} from '../render';
-
+let renderEntireTree = () => {
+}
 let state = {
     profilePage: {
         posts: [
@@ -25,7 +25,7 @@ let state = {
     }   
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: 5,
         text: state.profilePage.newPostText,
@@ -33,11 +33,15 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rerenderEntireTree(state);
+    renderEntireTree(state);
 }
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    renderEntireTree(state);
+}
+
+export const subscribe = (observer)  => {
+    renderEntireTree = observer;
 }
 
 export default state;

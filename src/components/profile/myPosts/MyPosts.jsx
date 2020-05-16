@@ -2,7 +2,7 @@ import React from 'react';
 import Post from './post/Post';
 import s from './MyPosts.module.sass';
 
-const MyPosts = ({posts, addPost, newPostText, updateNewPostText}) => {
+const MyPosts = ({posts, newPostText, dispatch}) => {
 
   let postsElements = posts
     .map(p =>  <Post message={p.text} likes={p.like} id={p.id}/>);
@@ -10,14 +10,14 @@ const MyPosts = ({posts, addPost, newPostText, updateNewPostText}) => {
   let newPostElement = React.createRef();
   
   let addNewPost = () => {
-    addPost();  
+    dispatch( {type: 'ADD-POST'} );  
   }
   
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    updateNewPostText(text);
+    let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text};
+    dispatch(action);
   }
-
 
   return (
     <div className={s.content}>

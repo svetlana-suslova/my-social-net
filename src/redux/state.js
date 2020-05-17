@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 let store = {
     _state: {
         profilePage: {
@@ -22,7 +24,8 @@ let store = {
                 {id: 1, text: 'Hello people.'},
                 {id: 2, text: 'Learning Rect??'},
                 {id: 3, text: 'Viel Spass!'}
-            ]
+            ],
+            newMessageText: ''
         }   
     },
     _callSubcriber() {
@@ -44,14 +47,27 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubcriber(this._state);
-
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
+            this._callSubcriber(this._state);
+        } else if (action.type === ADD_MESSAGE) {
+            let newMessage = {
+                id: 4,
+                text: this._state.messagesPage.newMessageText
+            };
+            this._state.messagesPage.messages.push(newMessage);
+            this._state.messagesPage.newMessageText = '';
+            this._callSubcriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.newText;
             this._callSubcriber(this._state);
         }
     } 
 }
-export const addPostActionCreator = () => ({type: 'ADD-POST'})
-export const updateNewPostTextActionCreator = (text) => 
-    ({type: 'UPDATE-NEW-POST-TEXT', newText: text})
+export const addPostCreator = () => ({type: 'ADD-POST'});
+export const updateNewPostTextCreator = (text) => 
+    ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+export const addMessageCreator = () => ({type: 'ADD-MESSAGE'});
+export const updateNewMessageTextCreator = (text) => 
+    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text});
 export default store;

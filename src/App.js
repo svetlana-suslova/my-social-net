@@ -21,7 +21,8 @@ const App = ({state, dispatch}) =>  {
             profilePage={state.profilePage} 
             dispatch={dispatch}/> }/>
           <Route path="/messages" render={ () => 
-            <Messages state={state.messagesPage}/> }/>
+            <Messages messagesPage={state.messagesPage}
+            dispatch={dispatch}/> }/>
           <Route path="/news" render={ () => <News /> }/>
           <Route path="/music" render={ () => <Music /> }/>
           <Route path="/settings" render={ () => <Settings /> }/>

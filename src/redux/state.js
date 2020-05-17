@@ -42,10 +42,4 @@ let store = {
         this._callSubcriber(this._state);
     } 
 }
-export const addPostCreator = () => ({type: 'ADD-POST'});
-export const updateNewPostTextCreator = (text) => 
-    ({type: 'UPDATE-NEW-POST-TEXT', newText: text});
-export const addMessageCreator = () => ({type: 'ADD-MESSAGE'});
-export const updateNewMessageTextCreator = (text) => 
-    ({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text});
 export default store;

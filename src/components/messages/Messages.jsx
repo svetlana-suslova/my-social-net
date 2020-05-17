@@ -2,7 +2,7 @@ import React from 'react';
 import DialogsItem from './dialogsItem/DialogsItem';
 import MessagesItem from './messagesItem/MessagesItem';
 import s from './Messages.module.sass';
-import {addMessageCreator, updateNewMessageTextCreator} from '../../redux/state';
+import {addMessageCreator, updateNewMessageTextCreator} from '../../redux/messages-reducer';
 
 const Messages = ({messagesPage, dispatch}) => {
 

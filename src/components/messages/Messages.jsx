@@ -2,24 +2,20 @@ import React from 'react';
 import DialogsItem from './dialogsItem/DialogsItem';
 import MessagesItem from './messagesItem/MessagesItem';
 import s from './Messages.module.sass';
-import {addMessageCreator, updateNewMessageTextCreator} from '../../redux/messages-reducer';
 
-const Messages = ({messagesPage, dispatch}) => {
+const Messages = ({dialogs, messages, addMessage, updateMessage, newMessageText}) => {
 
-  let dialogsElements = messagesPage.dialogs
-    .map(d => <DialogsItem name={d.name} id={d.id} />);
-  
-  let messagesElements = messagesPage.messages
-    .map(m => <MessagesItem text={m.text} id={m.id}/>);
+  let dialogsElements = 
+    dialogs.map(d => <DialogsItem name={d.name} id={d.id} />);
+  let messagesElements = 
+    messages.map(m => <MessagesItem text={m.text} id={m.id}/>);
 
-  let addNewMesssage = () => {
-    dispatch(addMessageCreator());  
+  let onNewMesssageAdd = () => {
+    addMessage(); 
   }
-  
   let onMessageChange = (e) => {
     let text = e.target.value;
-    let action = updateNewMessageTextCreator(text);
-    dispatch(action);
+    updateMessage(text);
   }
 
   return (
@@ -32,11 +28,11 @@ const Messages = ({messagesPage, dispatch}) => {
         <div>
           <div>
             <textarea placeholder="Enter your message"
-            value={messagesPage.newMessageText}
+            value={newMessageText}
             onChange={onMessageChange}/>
           </div>
           <div>
-            <button onClick={addNewMesssage}>Add message</button>
+            <button onClick={onNewMesssageAdd}>Add message</button>
           </div>
         </div>
       </div>

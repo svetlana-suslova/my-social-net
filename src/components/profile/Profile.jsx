@@ -1,18 +1,15 @@
 import React from 'react';
 // import s from './Profile.module.sass';
-import MyPosts from './myPosts/MyPosts';
+import MyPostsContainer from './myPosts/MyPostsContainer';
 import ProfileInfo from './profileInfo/ProfileInfo';
 
 
-const Profile = ({profilePage, dispatch}) => {
-    return (
-      <div>
-        <ProfileInfo />
-        <MyPosts 
-        posts={profilePage.posts} 
-        dispatch={dispatch}
-        newPostText={profilePage.newPostText}/>
-      </div>  
-    );
+const Profile = ({store}) => {
+  return (
+    <div>
+      <ProfileInfo />
+      <MyPostsContainer store={store}/>
+    </div>  
+  );
 }
 export default Profile;

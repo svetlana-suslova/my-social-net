@@ -1,23 +1,19 @@
 import React from 'react';
 import Post from './post/Post';
 import s from './MyPosts.module.sass';
-import {addPostCreator, updateNewPostTextCreator} from '../../../redux/profile-reducer';
 
-const MyPosts = ({posts, newPostText, dispatch}) => {
+const MyPosts = ({posts, addNewPost, updateNewPost, newPostText}) => {
 
-  let postsElements = posts
-    .map(p =>  <Post message={p.text} likes={p.like} id={p.id}/>);
+  let postsElements = 
+    posts.map(p =>  <Post message={p.text} likes={p.like} id={p.id}/>);
   
-  let newPostElement = React.createRef();
-  
-  let addNewPost = () => {
-    dispatch(addPostCreator());  
+  let onPostAdd = () => {
+    addNewPost();  
   }
-  
+  let newPostElement = React.createRef();
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    let action = updateNewPostTextCreator(text);
-    dispatch(action);
+    updateNewPost(text);
   }
 
   return (
@@ -30,7 +26,7 @@ const MyPosts = ({posts, newPostText, dispatch}) => {
           onChange={onPostChange}/>
         </div>
         <div>
-          <button onClick={addNewPost}>Add post</button>
+          <button onClick={onPostAdd}>Add post</button>
         </div>
       </div>
       <div className={s.posts}>

@@ -6,9 +6,9 @@ import s from './Messages.module.sass';
 const Messages = ({dialogs, messages, addMessage, updateMessage, newMessageText}) => {
 
   let dialogsElements = 
-    dialogs.map(d => <DialogsItem name={d.name} id={d.id} />);
+    dialogs.map(d => <DialogsItem name={d.name} id={d.id} key={d.id}/>);
   let messagesElements = 
-    messages.map(m => <MessagesItem text={m.text} id={m.id}/>);
+    messages.map(m => <MessagesItem text={m.text} id={m.id} key={m.id}/>);
 
   let onNewMesssageAdd = () => {
     addMessage(); 

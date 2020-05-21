@@ -5,7 +5,7 @@ import s from './MyPosts.module.sass';
 const MyPosts = ({posts, addNewPost, updateNewPost, newPostText}) => {
 
   let postsElements = 
-    posts.map(p =>  <Post message={p.text} likes={p.like} id={p.id}/>);
+    posts.map(p =>  <Post message={p.text} likes={p.like} id={p.id} key={p.id}/>);
   
   let onPostAdd = () => {
     addNewPost();  

@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Users.module.sass';
 import userPhoto from '../../assets/img/user.png';
+import {NavLink} from 'react-router-dom';
 
 const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, followUser, onPageChanged} ) => {
     
@@ -22,7 +23,9 @@ const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, fo
                 users.map( u => <div key={u.id}>
                     <span>
                         <div className={s.userPhoto}>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="Avatar"/>
+                            <NavLink to={`/profile/${u.id}`}>
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto} alt="Avatar"/>
+                            </NavLink>   
                         </div>
                         <div>
                             {

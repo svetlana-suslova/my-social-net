@@ -2,7 +2,7 @@ import React from 'react';
 import './App.sass';
 import Header from './components/header/Header';
 import Navbar from './components/navbar/Navbar';
-import Profile from './components/profile/Profile';
+import ProfileContainer from './components/profile/ProfileContainer';
 import MessagesContainer from './components/messages/MessagesContainer';
 import News from './components/news/News';
 import Music from './components/music/Music';
@@ -18,7 +18,7 @@ const App = ({store}) =>  {
         <Navbar />
         <div className='app-wrapper-content'>
           <Route path="/profile" render={ () => 
-            <Profile store={store}/> }/>
+            <ProfileContainer store={store}/> }/>
           <Route path="/messages" render={ () => 
             <MessagesContainer store={store}/> }/>
           <Route path="/users" render={ () => 

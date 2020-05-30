@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.sass';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/HeaderContainer';
 import Navbar from './components/navbar/Navbar';
 import ProfileContainer from './components/profile/ProfileContainer';
 import MessagesContainer from './components/messages/MessagesContainer';
@@ -14,7 +14,7 @@ const App = ({store}) =>  {
   return (
     <Router>
       <div className='app-wrapper'>
-        <Header />
+        <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
           <Route path="/profile/:userId?" render={ () => 

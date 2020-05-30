@@ -9,7 +9,7 @@ const ProfileInfo = ({profile}) => {
   }
   return (
     <>
-      <div>
+      <div className={s.mainImage}>
         <img src="https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg" alt="brain"/>
       </div>
       <div className={s.profileWrapper}>

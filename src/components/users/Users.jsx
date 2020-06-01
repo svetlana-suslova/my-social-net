@@ -4,7 +4,7 @@ import userPhoto from '../../assets/img/user.png';
 import {NavLink} from 'react-router-dom';
 import { followAPI } from '../../api/api';
 
-const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, followUser, onPageChanged} ) => {
+const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, followUser, onPageChanged, followingProgress, toggleFollowingProgress} ) => {
     
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -31,18 +31,22 @@ const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, fo
                         <div>
                             {
                                 u.followed 
-                                ? <button onClick={ () => { 
+                                ? <button disabled={followingProgress.some(id => id === u.id)} onClick={ () => {
+                                    toggleFollowingProgress(true, u.id);
                                     followAPI.unFollow(u.id).then(data => {
                                         if (data.resultCode === 0) {
                                             unFollowUser(u.id)
                                         }
+                                        toggleFollowingProgress(false, u.id);
                                     });   
                                 } }>Unfollow</button> 
-                                : <button onClick={ () => { 
+                                : <button disabled={followingProgress.some(id => id === u.id)} onClick={ () => { 
+                                    toggleFollowingProgress(true, u.id);
                                     followAPI.follow(u.id).then(data => {
                                         if (data.resultCode === 0) {
                                             followUser(u.id)
                                         }
+                                        toggleFollowingProgress(false, u.id);
                                     });  
                                 } }>Follow</button>
                             }

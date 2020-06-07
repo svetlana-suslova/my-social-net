@@ -9,6 +9,7 @@ import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
+import Login from './components/login/Login';
 
 const App = ({store}) =>  {
   return (
@@ -23,6 +24,8 @@ const App = ({store}) =>  {
             <MessagesContainer store={store}/> }/>
           <Route path="/users" render={ () => 
             <UsersContainer store={store}/> }/>
+          <Route path="/login" render={ () => 
+            <Login/> }/>
           <Route path="/news" render={ () => <News /> }/>
           <Route path="/music" render={ () => <Music /> }/>
           <Route path="/settings" render={ () => <Settings /> }/>

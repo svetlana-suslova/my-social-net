@@ -2,9 +2,8 @@ import React from 'react';
 import s from './Users.module.sass';
 import userPhoto from '../../assets/img/user.png';
 import {NavLink} from 'react-router-dom';
-import { followAPI } from '../../api/api';
 
-const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, followUser, onPageChanged, followingProgress, toggleFollowingProgress} ) => {
+const Users = ( {users, totalUsersCount, pageSize, currentPage, onPageChanged, followingProgress, unFollow, follow} ) => {
     
     let pagesCount = Math.ceil(totalUsersCount / pageSize);
     let pages = [];
@@ -31,24 +30,10 @@ const Users = ( {users, totalUsersCount, pageSize, currentPage, unFollowUser, fo
                         <div>
                             {
                                 u.followed 
-                                ? <button disabled={followingProgress.some(id => id === u.id)} onClick={ () => {
-                                    toggleFollowingProgress(true, u.id);
-                                    followAPI.unFollow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            unFollowUser(u.id)
-                                        }
-                                        toggleFollowingProgress(false, u.id);
-                                    });   
-                                } }>Unfollow</button> 
-                                : <button disabled={followingProgress.some(id => id === u.id)} onClick={ () => { 
-                                    toggleFollowingProgress(true, u.id);
-                                    followAPI.follow(u.id).then(data => {
-                                        if (data.resultCode === 0) {
-                                            followUser(u.id)
-                                        }
-                                        toggleFollowingProgress(false, u.id);
-                                    });  
-                                } }>Follow</button>
+                                ? <button disabled={followingProgress.some(id => id === u.id)} 
+                                onClick={ () => { unFollow( u.id) } }>Unfollow</button> 
+                                : <button disabled={followingProgress.some(id => id === u.id)} 
+                                onClick={ () => { follow( u.id) } }>Follow</button>
                             }
                         </div>
                     </span>

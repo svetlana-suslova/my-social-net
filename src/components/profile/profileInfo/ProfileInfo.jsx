@@ -1,21 +1,20 @@
 import React from 'react';
 import s from './ProfileInfo.module.sass';
 import Loader from '../../loader/Loader';
+import ProfileStatus from './ProfileStatus';
 
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, status}) => {
   if (!profile) {
     return <Loader />
   }
   return (
     <>
-      <div className={s.mainImage}>
-        <img src="https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg" alt="brain"/>
-      </div>
       <div className={s.profileWrapper}>
         <div className={s.avatar}>
           <img src={profile.photos.large} alt="avatar"/>
         </div>
+        <ProfileStatus status={status}/>
         <div className={s.description}>
           <div className={s.name}>
             {profile.fullName}

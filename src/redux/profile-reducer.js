@@ -12,7 +12,7 @@ let initialState = {
     ],
     newPostText: 'Kamasutra',
     profile: null,
-    status: null
+    status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -50,17 +50,29 @@ export const setUserProfileStatus = (status) => ({type: 'SET_USER_PROFILE_STATUS
 export const getUserProfile = (userId) => {
     return (dispatch) => {
         if(!userId) { userId = 2 }
-        profileAPI.getProfile(userId).then(response => { 
-        dispatch(setUserProfile(response.data));
-      });
+        profileAPI.getProfile(userId)
+        .then(response => { 
+            dispatch(setUserProfile(response.data));
+        });
     }
 }
-export const getUserProfileStatus = (userId) => {
+export const getUserStatus = (userId) => {
     return (dispatch) => {
         if(!userId) { userId = 2 }
-        profileAPI.getProfileStatus(userId).then(response => { 
-        dispatch(setUserProfileStatus(response.data));
-      });
+        profileAPI.getProfileStatus(userId)
+        .then(response => { 
+            dispatch(setUserProfileStatus(response.data));
+        });
+    }
+}
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateProfileStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setUserProfileStatus(status));
+            }
+        });
     }
 }
 export default profileReducer;

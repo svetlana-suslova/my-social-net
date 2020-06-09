@@ -2,9 +2,10 @@ import React from 'react';
 import s from './ProfileInfo.module.sass';
 import Loader from '../../loader/Loader';
 import ProfileStatus from './ProfileStatus';
+import userPhoto from '../../../assets/img/user.png';
 
 
-const ProfileInfo = ({profile, status}) => {
+const ProfileInfo = ({profile, status, updateUserStatus}) => {
   if (!profile) {
     return <Loader />
   }
@@ -12,9 +13,9 @@ const ProfileInfo = ({profile, status}) => {
     <>
       <div className={s.profileWrapper}>
         <div className={s.avatar}>
-          <img src={profile.photos.large} alt="avatar"/>
+          <img src={profile.photos.large || userPhoto} alt="avatar"/>
         </div>
-        <ProfileStatus status={status}/>
+        <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
         <div className={s.description}>
           <div className={s.name}>
             {profile.fullName}

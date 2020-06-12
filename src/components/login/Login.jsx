@@ -5,13 +5,13 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field type="text" name="login" placeholder="Login" component="input"/>
+                <Field name="login" placeholder="Login" component="input"/>
             </div>
             <div>
-                <Field type="text" name="password" placeholder="Password" component="input"/>
+                <Field name="password" placeholder="Password" component="input"/>
             </div>
             <div>
-                <Field type="checkbox" name="rememberMe" component="input"/>Remember me
+                <Field name="rememberMe" component="input"/>Remember me
             </div>
             <div>
                 <button>Login</button>
@@ -23,13 +23,13 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const Login = () => {
-    const onSubmit = (formData) => {
+    const onSubmitLogin = (formData) => {
         console.log(formData);
     }
-
+    
     return <div>
         <h1>LOGIN</h1>
-        <LoginReduxForm onSubmit={onSubmit}/>
+        <LoginReduxForm onSubmit={onSubmitLogin}/>
     </div>   
 }
 export default Login;

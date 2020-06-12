@@ -2,20 +2,34 @@ import React from 'react';
 import DialogsItem from './dialogsItem/DialogsItem';
 import MessagesItem from './messagesItem/MessagesItem';
 import s from './Messages.module.sass';
+import { reduxForm, Field } from 'redux-form'
 
-const Messages = ({dialogs, messages, addMessage, updateMessage, newMessageText}) => {
+const AddMessagesForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+        <div>
+            <Field name="newMessageText" 
+            placeholder="Enter your message" 
+            component="textarea"/>
+        </div>
+        <div>
+            <button>Add</button>
+        </div>
+    </form>
+  )       
+}
+
+const AddMessagesReduxForm = reduxForm({form: 'addMessage'})(AddMessagesForm);
+
+const Messages = ({dialogs, messages, addMessage}) => {
 
   let dialogsElements = 
     dialogs.map(d => <DialogsItem name={d.name} id={d.id} key={d.id}/>);
   let messagesElements = 
     messages.map(m => <MessagesItem text={m.text} id={m.id} key={m.id}/>);
 
-  let onNewMesssageAdd = () => {
-    addMessage(); 
-  }
-  let onMessageChange = (e) => {
-    let text = e.target.value;
-    updateMessage(text);
+  const onMesssageAdd = (formData) => {
+    addMessage(formData.newMessageText);
   }
 
   return (
@@ -25,16 +39,7 @@ const Messages = ({dialogs, messages, addMessage, updateMessage, newMessageText}
       </div>
       <div className={s.messages}>
         <div>{messagesElements}</div>
-        <div>
-          <div>
-            <textarea placeholder="Enter your message"
-            value={newMessageText}
-            onChange={onMessageChange}/>
-          </div>
-          <div>
-            <button onClick={onNewMesssageAdd}>Add message</button>
-          </div>
-        </div>
+        <AddMessagesReduxForm onSubmit={onMesssageAdd}/>
       </div>
     </div>  
   );

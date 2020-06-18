@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Header.module.sass';
-import Loader from '../loader/Loader';
+import Loader from '../common/loader/Loader';
 
 const Header = ({isAuth, isFetching, login}) => {
     return (

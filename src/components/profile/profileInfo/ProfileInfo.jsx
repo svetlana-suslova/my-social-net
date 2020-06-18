@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.sass';
-import Loader from '../../loader/Loader';
+import Loader from '../../common/loader/Loader';
 import ProfileStatus from './ProfileStatus';
 import userPhoto from '../../../assets/img/user.png';
 

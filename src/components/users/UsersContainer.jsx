@@ -2,7 +2,7 @@ import {follow, unFollow, setCurrentPage, getUsers} from '../../redux/users-redu
 import {connect} from 'react-redux';
 import React, {Component} from 'react';
 import Users from './Users';
-import Loader from '../loader/Loader';
+import Loader from '../common/loader/Loader';
 import { compose } from 'redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 

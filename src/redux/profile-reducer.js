@@ -40,7 +40,6 @@ export const setUserProfileStatus = (status) => ({type: 'SET_USER_PROFILE_STATUS
   
 export const getUserProfile = (userId) => {
     return (dispatch) => {
-        if(!userId) { userId = 2 }
         profileAPI.getProfile(userId)
         .then(response => { 
             dispatch(setUserProfile(response.data));
@@ -49,7 +48,6 @@ export const getUserProfile = (userId) => {
 }
 export const getUserStatus = (userId) => {
     return (dispatch) => {
-        if(!userId) { userId = 2 }
         profileAPI.getProfileStatus(userId)
         .then(response => { 
             dispatch(setUserProfileStatus(response.data));

@@ -34,7 +34,7 @@ export const toggleIsFetching = (isFetching) => ({type: 'TOGGLE_IS_FETCHING', is
 export const getAuthUserData = () => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        authAPI.getAuth().then(response => {
+        return authAPI.getAuth().then(response => {
         dispatch(toggleIsFetching(false)); 
             if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data;
@@ -43,6 +43,7 @@ export const getAuthUserData = () => {
         });
     }
 }
+
 export const logIn = (email, password, rememberMe) => {
     return (dispatch) => {
         authAPI.logIn(email, password, rememberMe).then(response => {
@@ -64,5 +65,4 @@ export const logOut = () => {
         });
     }
 }
-
 export default authReducer;

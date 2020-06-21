@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import Users from './Users';
 import Loader from '../common/loader/Loader';
 import { compose } from 'redux';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 class UsersContainer extends Component {
     componentDidMount() {
@@ -43,6 +42,4 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-  connect(mapStateToProps, { setCurrentPage, getUsers, unFollow, follow}),
-  withAuthRedirect
-)(UsersContainer);
+  connect(mapStateToProps, { setCurrentPage, getUsers, unFollow, follow}))(UsersContainer);

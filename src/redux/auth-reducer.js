@@ -34,12 +34,12 @@ export const toggleIsFetching = (isFetching) => ({type: 'TOGGLE_IS_FETCHING', is
 export const getAuthUserData = () => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        return authAPI.getAuth().then(response => {
-        dispatch(toggleIsFetching(false)); 
+        return authAPI.getAuth().then(response => { //return здесь возвращает promise наружу (результат используется потом в initializeApp()
             if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data;
                 dispatch(setAuthUserData(id, email, login, true));
-            }    
+            }
+            dispatch(toggleIsFetching(false));    
         });
     }
 }

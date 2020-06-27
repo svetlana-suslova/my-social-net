@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.sass';
 import Loader from '../../common/loader/Loader';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from '../../../assets/img/user.png';
 
 
@@ -15,7 +15,7 @@ const ProfileInfo = ({profile, status, updateUserStatus}) => {
         <div className={s.avatar}>
           <img src={profile.photos.large || userPhoto} alt="avatar"/>
         </div>
-        <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+        <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
         <div className={s.description}>
           <div className={s.name}>
             {profile.fullName}

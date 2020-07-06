@@ -37,31 +37,26 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = (newPostText) => ({type: 'ADD-POST', newPostText});
 export const setUserProfile = (profile) => ({type: 'SET_USER_PROFILE', profile});
 export const setUserProfileStatus = (status) => ({type: 'SET_USER_PROFILE_STATUS', status});
-  
+
 export const getUserProfile = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfile(userId)
-        .then(response => { 
-            dispatch(setUserProfile(response.data));
-        });
+    return async (dispatch) => {
+        const response = await profileAPI.getProfile(userId);
+        dispatch(setUserProfile(response.data));
     }
 }
 export const getUserStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getProfileStatus(userId)
-        .then(response => { 
-            dispatch(setUserProfileStatus(response.data));
-        });
+    return async (dispatch) => {
+        const response = await profileAPI.getProfileStatus(userId);
+        dispatch(setUserProfileStatus(response.data));
     }
 }
 export const updateUserStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateProfileStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserProfileStatus(status));
-            }
-        });
+    return async (dispatch) => {
+        const response = await profileAPI.updateProfileStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setUserProfileStatus(status));
+        }
     }
 }
+
 export default profileReducer;

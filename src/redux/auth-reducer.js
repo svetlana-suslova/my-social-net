@@ -32,37 +32,36 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({type: 'SET_AU
 export const toggleIsFetching = (isFetching) => ({type: 'TOGGLE_IS_FETCHING', isFetching});
 
 export const getAuthUserData = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
-        return authAPI.getAuth().then(response => { //return здесь возвращает promise наружу (результат используется потом в initializeApp()
-            if (response.data.resultCode === 0) {
-                const {id, email, login} = response.data.data;
-                dispatch(setAuthUserData(id, email, login, true));
-            }
-            dispatch(toggleIsFetching(false));    
-        });
+        const response = await authAPI.getAuth();
+        if (response.data.resultCode === 0) {
+            const {id, email, login} = response.data.data;
+            dispatch(setAuthUserData(id, email, login, true));
+        }
+        dispatch(toggleIsFetching(false));
+        return response;
     }
 }
-
 export const logIn = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.logIn(email, password, rememberMe).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData());
-            } else {
-                let errorMessage = response.data.messages.length > 0 ? response.data.messages : "Error";
-                dispatch(stopSubmit('login', {_error: errorMessage}));
-            }    
-        });
+    return async (dispatch) => {
+        const response = await authAPI.logIn(email, password, rememberMe);
+        if (response.data.resultCode === 0) {
+            dispatch(getAuthUserData());
+        } else {
+            let errorMessage = response.data.messages.length > 0 ? response.data.messages : "Error";
+            dispatch(stopSubmit('login', {_error: errorMessage}));
+        }
     }
 }
 export const logOut = () => {
-    return (dispatch) => {
-        authAPI.logOut().then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false));
-            }    
-        });
+    return async (dispatch) => {
+        const response = await authAPI.logOut();
+        if (response.data.resultCode === 0) {
+            dispatch(setAuthUserData(null, null, null, false));
+        }
     }
 }
+
+
 export default authReducer;

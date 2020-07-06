@@ -87,26 +87,25 @@ export const queryUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(setTotalUsersCount(response.data.totalCount));
     });
 }
+
 export const unFollow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
-        followAPI.unFollow(userId).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(unFollowUserSuccess(userId))
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-        }); 
+        const response = await followAPI.unFollow(userId);
+        if (response.data.resultCode === 0) {
+            dispatch(unFollowUserSuccess(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId));
     }
 }
 export const follow = (userId) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
-        followAPI.follow(userId).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(followUserSuccess(userId))
-            }
-            dispatch(toggleFollowingProgress(false, userId));
-        }); 
+        const response = await followAPI.follow(userId);
+        if (response.data.resultCode === 0) {
+            dispatch(followUserSuccess(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId)); 
     }
 }
 

@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import Users from './Users';
 import Loader from '../common/loader/Loader';
 import { compose } from 'redux';
-import { getUsers, getCurrentPage, getFollowingProgress, getPageSize, getTotalUsersCount } from '../../redux/users-selectors';
+import { getUsers, getCurrentPage, getFollowingProgress, getPageSize, getTotalUsersCount, getIsFetching } from '../../redux/users-selectors';
 
 class UsersContainer extends Component {
     componentDidMount() {
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
-    isFetching: getCurrentPage(state),
+    isFetching: getIsFetching(state),
     followingProgress: getFollowingProgress(state)
   }
 }

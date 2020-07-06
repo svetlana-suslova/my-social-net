@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = ({status, updateUserStatus}) => {
 
   let [editMode, setEditMode] = useState(false);
-  let [status, setStatus] = useState(props.status);
+  let [actualStatus, setStatus] = useState(status);
 
   useEffect( () => {
-    setStatus(props.status);
-  }, [props.status] );
+    setStatus(status);
+  }, [status] );
 
   const activateEditMode = () => {
     setEditMode(true);
@@ -15,7 +15,7 @@ const ProfileStatusWithHooks = (props) => {
 
   const deactivateEditMode = () => {
     setEditMode(false);
-    props.updateUserStatus(status);
+    updateUserStatus(actualStatus);
   }
 
   const onStatusChange = (e) => {
@@ -27,7 +27,7 @@ const ProfileStatusWithHooks = (props) => {
     <div>
       { !editMode &&
         <div>
-          <span onDoubleClick={activateEditMode}>{props.status || 'STATUS'}</span>
+          <span onDoubleClick={activateEditMode}>{status || 'STATUS'}</span>
         </div>
       }
       { editMode &&
@@ -35,7 +35,7 @@ const ProfileStatusWithHooks = (props) => {
           <input autoFocus type="text"
           onBlur={deactivateEditMode}
           onChange={onStatusChange} 
-          value={status}/>
+          value={actualStatus}/>
         </div>
       }
     </div> 

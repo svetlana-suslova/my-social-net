@@ -8,9 +8,9 @@ import { required, maxLength } from '../../utils/validators';
 
 const maxLength50 = maxLength(50);
 
-const AddMessagesForm = (props) => {
+const AddMessagesForm = ({handleSubmit}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
         <div>
             <Field name="newMessageText" 
             placeholder="Enter your message" 

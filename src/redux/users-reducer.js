@@ -1,12 +1,12 @@
 import { usersAPI, followAPI } from '../api/api';
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = 'SET_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
+const FOLLOW = 'users/FOLLOW';
+const UNFOLLOW = 'users/UNFOLLOW';
+const SET_USERS = 'users/SET_USERS';
+const SET_CURRENT_PAGE = 'users/SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING_PROGRESS = 'users/TOGGLE_FOLLOWING_PROGRESS';
 
 let initialState = {
     users: [],
@@ -70,13 +70,13 @@ const usersReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const followUserSuccess = (userId) => ({type: 'FOLLOW', userId});
-export const unFollowUserSuccess = (userId) => ({type: 'UNFOLLOW', userId});
-export const setUsers = (users) => ({type: 'SET_USERS', users});
-export const setCurrentPage = (currentPage) => ({type: 'SET_CURRENT_PAGE', currentPage});
-export const setTotalUsersCount = (totalUsersCount) => ({type: 'SET_TOTAL_USERS_COUNT', totalUsersCount});
-export const toggleIsFetching = (isFetching) => ({type: 'TOGGLE_IS_FETCHING', isFetching});
-export const toggleFollowingProgress = (followingProgress, userId) => ({type: 'TOGGLE_FOLLOWING_PROGRESS', followingProgress, userId});
+export const followUserSuccess = (userId) => ({type: FOLLOW, userId});
+export const unFollowUserSuccess = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const toggleFollowingProgress = (followingProgress, userId) => ({type: TOGGLE_FOLLOWING_PROGRESS, followingProgress, userId});
 
 export const queryUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(toggleIsFetching(true));

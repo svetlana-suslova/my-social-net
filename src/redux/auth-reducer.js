@@ -1,8 +1,8 @@
 import { authAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
 
-const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const SET_AUTH_USER_DATA = 'auth/SET_AUTH_USER_DATA';
+const TOGGLE_IS_FETCHING = 'auth/TOGGLE_IS_FETCHING';
 
 let initialState = {
     userId: null,
@@ -28,8 +28,8 @@ const authReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const setAuthUserData = (userId, email, login, isAuth) => ({type: 'SET_AUTH_USER_DATA', payload: {userId, email, login, isAuth}});
-export const toggleIsFetching = (isFetching) => ({type: 'TOGGLE_IS_FETCHING', isFetching});
+export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}});
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export const getAuthUserData = () => {
     return async (dispatch) => {
@@ -62,6 +62,5 @@ export const logOut = () => {
         }
     }
 }
-
 
 export default authReducer;

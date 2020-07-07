@@ -7,27 +7,30 @@ import { compose } from 'redux';
 import { getUsers, getCurrentPage, getFollowingProgress, getPageSize, getTotalUsersCount, getIsFetching } from '../../redux/users-selectors';
 
 class UsersContainer extends Component {
-    componentDidMount() {
-      this.props.queryUsers(this.props.currentPage, this.props.pageSize);
-    }
-    onPageChanged = (pageNumber) => {
-      this.props.queryUsers(pageNumber, this.props.pageSize);
-    }
+  componentDidMount() {
+    const {queryUsers, currentPage, pageSize} = this.props;
+    queryUsers(currentPage, pageSize);
+  }
+  onPageChanged = (pageNumber) => {
+    const {queryUsers, pageSize} = this.props;
+    queryUsers(pageNumber, pageSize);
+  }
     
-    render() {
-        return <>
-          { this.props.isFetching ? <Loader /> : null }
-          <Users users={this.props.users}
-                  totalUsersCount={this.props.totalUsersCount}
-                  pageSize={this.props.pageSize}
-                  currentPage={this.props.currentPage}
-                  unFollow={this.props.unFollow}
-                  follow={this.props.follow}
-                  onPageChanged={this.onPageChanged}
-                  followingProgress={this.props.followingProgress}
-                  toggleFollowingProgress={this.props.toggleFollowingProgress}/>
-      </>
-    }
+  render() {
+    const {isFetching, currentPage, pageSize, users, totalUsersCount, followingProgress, toggleFollowingProgress, unFollow, follow} = this.props;
+      return <>
+        { isFetching ? <Loader /> : null }
+        <Users users={users}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        unFollow={unFollow}
+        follow={follow}
+        onPageChanged={this.onPageChanged}
+        followingProgress={followingProgress}
+        toggleFollowingProgress={toggleFollowingProgress}/>
+    </>
+  }
 }
 
 const mapStateToProps = (state) => {

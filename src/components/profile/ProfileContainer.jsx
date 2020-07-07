@@ -19,11 +19,11 @@ class ProfileContainer extends Component {
     this.props.getUserStatus(userId);
   }
   render() {
+    const {status, profile, updateUserStatus} = this.props;
     return (
-      <Profile {...this.props} 
-      status={this.props.status} 
-      profile={this.props.profile}
-      updateUserStatus={this.props.updateUserStatus} />
+      <Profile status={status}
+      profile={profile}
+      updateUserStatus={updateUserStatus} />
     );
   } 
 }

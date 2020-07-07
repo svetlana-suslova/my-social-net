@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import s from './ProfileInfo.module.sass';
 
 export default class ProfileStatus extends Component {
   state = {
@@ -13,10 +12,12 @@ export default class ProfileStatus extends Component {
     }); 
   }
   deactivateEditMode = () => {
+    const {status} = this.state;
+    const {updateUserStatus} = this.props;
     this.setState({
       editMode: false
     });
-    this.props.updateUserStatus(this.state.status);
+    updateUserStatus(status);
   }
   onStatusChange = (e) => {
     this.setState({
@@ -24,27 +25,30 @@ export default class ProfileStatus extends Component {
     });
   }
   componentDidUpdate(prevProps) {
-    if (prevProps.status !== this.props.status) {
+    const {defaultStatus} = this.props;
+    if (prevProps.status !== defaultStatus) {
       this.setState({
-        status: this.props.status
+        status: defaultStatus
       });
     } 
   }
 
   render() {
+    const {defaultStatus} = this.props;
+    const {editMode, status} = this.state;
     return (
       <div>
-        { !this.state.editMode &&
+        { !editMode &&
           <div>
-            <span onDoubleClick={this.activateEditMode}>{this.props.status || 'STATUS'}</span>
+            <span onDoubleClick={this.activateEditMode}>{defaultStatus || 'STATUS'}</span>
           </div>
         }
-        { this.state.editMode &&
+        { editMode &&
           <div>
             <input autoFocus type="text"
             onBlur={this.deactivateEditMode}
             onChange={this.onStatusChange} 
-            value={this.state.status}/>
+            value={status}/>
           </div>
         }
       </div> 

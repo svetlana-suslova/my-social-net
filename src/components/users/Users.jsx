@@ -18,7 +18,6 @@ const Users = ( {users, totalUsersCount, pageSize, currentPage, onPageChanged, f
                                     unFollow={unFollow} 
                                     follow={follow}/> )       
                 }
-
             </div>   
         </div>
     );

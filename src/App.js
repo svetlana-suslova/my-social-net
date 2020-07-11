@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './App.sass';
 import HeaderContainer from './components/header/HeaderContainer';
 import Navbar from './components/navbar/Navbar';
-import ProfileContainer from './components/profile/ProfileContainer';
-import MessagesContainer from './components/messages/MessagesContainer';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
@@ -14,6 +12,9 @@ import {initializeApp} from './redux/app-reducer';
 import {connect} from 'react-redux';
 import { compose } from 'redux';
 import Loader from './components/common/loader/Loader';
+import {withSuspense} from './hoc/withSuspense';
+const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));
+const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
 class App extends Component {
   componentDidMount() {
@@ -31,10 +32,8 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path="/profile/:userId?" render={ () => 
-            <ProfileContainer/> }/>
-          <Route path="/messages" render={ () => 
-            <MessagesContainer /> }/>
+          <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+          <Route path="/messages" render={withSuspense(MessagesContainer)}/>
           <Route path="/users" render={ () => 
             <UsersContainer /> }/>
           <Route path="/login" render={ () => 

@@ -50,6 +50,9 @@ export const profileAPI = {
               'Content-Type': 'multipart/form-data'
             }
         });
+    },
+    saveProfile(aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts) {
+        return instance.put(`profile`, { aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts});
     }
 }
 

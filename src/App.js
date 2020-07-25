@@ -5,7 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
 import Login from './components/login/Login';
 import {initializeApp} from './redux/app-reducer';
@@ -32,15 +32,19 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-          <Route path="/messages" render={withSuspense(MessagesContainer)}/>
-          <Route path="/users" render={ () => 
-            <UsersContainer /> }/>
-          <Route path="/login" render={ () => 
-            <Login/> }/>
-          <Route path="/news" render={ () => <News /> }/>
-          <Route path="/music" render={ () => <Music /> }/>
-          <Route path="/settings" render={ () => <Settings /> }/>
+          <Switch>
+            <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
+            <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+            <Route path="/messages" render={withSuspense(MessagesContainer)}/>
+            <Route path="/users" render={ () => 
+              <UsersContainer /> }/>
+            <Route path="/login" render={ () => 
+              <Login/> }/>
+            <Route path="/news" render={ () => <News /> }/>
+            <Route path="/music" render={ () => <Music /> }/>
+            <Route path="/settings" render={ () => <Settings /> }/>
+            <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
+          </Switch>
         </div>
       </div>
     )  

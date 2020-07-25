@@ -8,15 +8,21 @@ import Settings from './components/settings/Settings';
 import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
 import Login from './components/login/Login';
-import {initializeApp} from './redux/app-reducer';
+import {initializeApp, catchGlobalError} from './redux/app-reducer';
 import {connect} from 'react-redux';
 import { compose } from 'redux';
 import Loader from './components/common/loader/Loader';
+import ErrorMessage from './components/common/errorMessage/ErrorMessage';
 import {withSuspense} from './hoc/withSuspense';
 const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
 class App extends Component {
+  
+  componentDidCatch() {
+    this.props.catchGlobalError();
+  }
+
   componentDidMount() {
     this.props.initializeApp();
   }
@@ -25,6 +31,10 @@ class App extends Component {
 
     if (!this.props.initialized) {
       return <Loader />
+    }
+
+    if (this.props.globalError) {
+      return <ErrorMessage />
     }
 
     return (
@@ -52,10 +62,11 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+  initialized: state.app.initialized,
+  globalError: state.app.globalError
 });
 
 export default compose(
-  connect(mapStateToProps, { initializeApp }),
+  connect(mapStateToProps, { initializeApp, catchGlobalError }),
   withRouter
 )(App);

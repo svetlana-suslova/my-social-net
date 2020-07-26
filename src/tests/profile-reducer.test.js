@@ -1,4 +1,4 @@
-import profileReducer, {addPost} from './profile-reducer';
+import profileReducer, {addPost} from '../redux/profile-reducer';
 
 //1. test data
 const action = addPost('blabla');

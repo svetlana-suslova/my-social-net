@@ -1,5 +1,6 @@
-import profileReducer from './profile-reducer';
-import messagesReducer from './messages-reducer';
+// this is an example of local handmade store similar to redux-store 
+import profileReducer from '../redux/profile-reducer';
+import messagesReducer from '../redux/messages-reducer';
 let store = {
     _state: {
         profilePage: {

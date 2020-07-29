@@ -14,7 +14,8 @@ import { compose } from 'redux';
 import Loader from './components/common/loader/Loader';
 import ErrorMessage from './components/common/errorMessage/ErrorMessage';
 import {withSuspense} from './hoc/withSuspense';
-const MessagesContainer = React.lazy(() => import('./components/messages/MessagesContainer'));
+import MyPostsContainer from './components/profile/myPosts/MyPostsContainer';
+const MessagesContainer = React.lazy(() => import('./components/profile/messages/MessagesContainer'));
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
 class App extends Component {
@@ -40,7 +41,6 @@ class App extends Component {
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
-        <Navbar />
         <div className='app-wrapper-content'>
           <Switch>
             <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
@@ -53,6 +53,7 @@ class App extends Component {
             <Route path="/news" render={ () => <News /> }/>
             <Route path="/music" render={ () => <Music /> }/>
             <Route path="/settings" render={ () => <Settings /> }/>
+            <Route path="/posts" render={ () => <MyPostsContainer /> }/>
             <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
           </Switch>
         </div>

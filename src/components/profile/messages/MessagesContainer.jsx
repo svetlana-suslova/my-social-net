@@ -1,7 +1,7 @@
-import {addMessage} from '../../redux/messages-reducer';
+import {addMessage} from '../../../redux/messages-reducer';
 import Messages from './Messages';
 import {connect} from 'react-redux';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {withAuthRedirect} from '../../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 const mapStateToProps = (state) => {

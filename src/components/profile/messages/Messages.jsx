@@ -3,8 +3,8 @@ import DialogsItem from './dialogsItem/DialogsItem';
 import MessagesItem from './messagesItem/MessagesItem';
 import s from './Messages.module.sass';
 import { reduxForm, Field } from 'redux-form'
-import { TextArea } from '../common/formControls/FormControls';
-import { required, maxLength } from '../../utils/validators';
+import { TextArea } from '../../common/formControls/FormControls';
+import { required, maxLength } from '../../../utils/validators';
 
 const maxLength50 = maxLength(50);
 

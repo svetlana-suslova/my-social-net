@@ -2,12 +2,12 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Header.module.sass';
 import Loader from '../common/loader/Loader';
-import logo from '../../assets/img/rose.png';
+import Navbar from '../navbar/Navbar';
 
 const Header = ({isAuth, isFetching, login, logOut}) => {
     return (
         <header className={s.header}>
-            <img src={logo} alt="logo"/>
+            <Navbar />
             <div className={s.loginBlock}>
             { isFetching ? <Loader />: null }    
             { isAuth

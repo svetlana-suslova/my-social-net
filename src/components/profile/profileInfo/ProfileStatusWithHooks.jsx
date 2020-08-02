@@ -25,11 +25,9 @@ const ProfileStatusWithHooks = ({status, updateUserStatus}) => {
   }
   
   return (
-    <div>
+    <>
       { !editMode &&
-        <div className={s.status}>
-          <span onDoubleClick={activateEditMode}>{status || 'STATUS'}</span>
-        </div>
+      <i><span onDoubleClick={activateEditMode}>{status || 'STATUS'}</span></i>
       }
       { editMode &&
         <div>
@@ -39,7 +37,7 @@ const ProfileStatusWithHooks = ({status, updateUserStatus}) => {
           value={actualStatus}/>
         </div>
       }
-    </div> 
+    </> 
   );
 }
 

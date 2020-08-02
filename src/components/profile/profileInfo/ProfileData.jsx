@@ -4,34 +4,37 @@ import s from './ProfileInfo.module.sass';
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
   return (
     <>
-      { isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
       <div className={s.description}>
         <div className={s.name}>
-          {profile.fullName}
+        <span><b>Name: </b></span>{profile.fullName}
         </div>
-        <div className={s.data}>
-          <span>About me:  </span>{profile.aboutMe}
+        <div>
+          <span><b>About me: </b></span>{profile.aboutMe}
         </div>
-        <div className={s.data}>
-          <span>Looking for a job:  </span>{profile.lookingForAJob ? "yes" : "no"}
+        <div>
+          <span><b>Looking for a job: </b></span>{profile.lookingForAJob ? "yes" : "no"}
         </div>
           {profile.lookingForAJob &&
             <div>
-                <span>My professional skills:  </span>{profile.lookingForAJobDescription}
+                <span><b>Professional skills: </b></span>{profile.lookingForAJobDescription}
             </div>
           }
-      </div>   
+      </div>
       <div className={s.contacts}>
         {Object.keys(profile.contacts).filter(key => key !== 'mainLink' && key !== 'vk').map(key => {
         return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/> 
         })}
       </div>
+      { isOwner && 
+      <p className={s.edit}>
+        <a onClick={goToEditMode} title="edit profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
+      </p> }
     </>
   );
 }
 
 const Contact = ({contactTitle, contactValue}) => {
-  return <div className={s.contact}><span>{contactTitle}</span>: {contactValue}</div>
+  return <div className={s.contact}><span><b>{contactTitle}: </b></span><a target="_blank" rel="noopener noreferrer" href={contactValue}>{contactValue}</a></div>
 }
 
 export default ProfileData;

@@ -10,34 +10,34 @@ const maxLength20 = maxLength(20);
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
     return (
-      <form onSubmit={handleSubmit}>
-        <div><button>Save</button></div>
+      <form className={s.frofileForm} onSubmit={handleSubmit}>
         { error && <div className={style.formError}>
             {error}</div> 
         }
         <div className={s.description}>
             <div className={s.name}>
-                <span>Name: </span>
+                <span><b>Name: </b></span>
                 <Field name="fullName" 
                 placeholder="Name"
                 component={Input}
                 validate={[required, maxLength20]}/>
             </div>
-            <div className={s.data}>
-                <span>About me: </span>
+            <div>
+                <span><b>About me: </b></span>
                 <Field name="aboutMe" 
                 placeholder="About me"
                 component={TextArea}
                 validate={[required, maxLength50]}/>
             </div>
-            <div className={s.data}>
-                <span>Looking for a job: </span>
+            <div>
+                <span><b>Looking for a job: </b></span>
                 <Field name="lookingForAJob"
                 type="checkbox"
+                className={s.check}
                 component={Input}/>
             </div>
             <div>
-                <span>My professional skills: </span>
+                <span><b>Professional skills: </b></span>
                 <Field name="lookingForAJobDescription" 
                 placeholder="List your skills here"
                 component={TextArea}
@@ -47,13 +47,14 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
         <div className={s.contacts}>
           {Object.keys(profile.contacts).filter(key => key !== 'mainLink' && key !== 'vk').map(key => {
           return <div key={key}>
-              <span>{key}: </span>
+              <span><b>{key}: </b></span>
               <Field name={`contacts.${key}`} 
                 placeholder={key}
                 component={Input}/>
           </div> 
           })}
         </div>
+        <div className={s.save}><button className={s.saveButton}>Save</button></div>
       </form>
     );
 }

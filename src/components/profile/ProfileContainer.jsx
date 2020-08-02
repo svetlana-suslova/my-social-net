@@ -36,7 +36,7 @@ class ProfileContainer extends Component {
       updateUserStatus={updateUserStatus}
       isOwner={!this.props.match.params.userId} 
       savePhoto={savePhoto}
-      saveProfile={saveProfile}/>
+      saveProfile={saveProfile} />
     );
   } 
 }

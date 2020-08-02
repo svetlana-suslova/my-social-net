@@ -1,23 +1,50 @@
-img
-  width: 100%
-.mainImage
-  width: 450px
-  margin: 0 auto
 .profileWrapper
-  display: flex
-  flex-direction: row
-.avatar
-  width: 200px
-  height: 200px
+  background: #ffffff
+  line-height: 25px
+  padding: 15px
+  margin-left: 130px
+  b
+    font-weight: 600
+  a
+    color: #404040
+    text-decoration: none
+    &:link, &:visited
+      color: #404040
+      text-decoration: none
+    &:hover
+      cursor: pointer 
 .description
-  padding: 10px
+  margin-bottom: 10px
 .name
-  font-size: 35px
   text-transform: capitalize
-.data
-  font-size: 22px
 .contacts
-  margin-left: 90px
-.status
-  min-width: 100px
-  text-align: center
+  margin-bottom: 5px
+  a
+    font-style: italic 
+    font-size: 13px   
+.save
+  max-width: 350px     
+.saveButton
+  border: none
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22)
+  border-radius: 4px
+  padding: 0 10px
+  margin: 10px auto
+  display: block
+  font-style: italic
+  font-size: 12px
+  outline: none
+  &:hover
+    background: #edf1f5
+.frofileForm
+  input, textarea  
+    border: 1px solid #ddd
+    border-radius: 4px
+    min-width: 350px
+    margin-bottom: 5px
+    &:focus
+      outline: 2px solid #edf1f5
+  .check
+    min-width: 5px
+    &:focus
+      outline: none

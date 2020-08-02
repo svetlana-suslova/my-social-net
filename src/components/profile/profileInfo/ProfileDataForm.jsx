@@ -24,7 +24,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
             </div>
             <div>
                 <span><b>About me: </b></span>
-                <Field name="aboutMe" 
+                <Field name="aboutMe"
                 placeholder="About me"
                 component={TextArea}
                 validate={[required, maxLength50]}/>

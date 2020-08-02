@@ -6,22 +6,36 @@ const Navbar = () => {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/profile'>Profile</NavLink>
+                <span>
+                    <NavLink to='/profile' title="Profile">
+                        <span class="hidden-xs hidden-sm">Profile</span> 
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </NavLink>
+                </span>
             </div>
             <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/messages'>Messages</NavLink>
+                <NavLink to='/users' title="Users">
+                    <span class="hidden-xs hidden-sm">Users</span> 
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/users'>Users</NavLink>
+                <NavLink to='/wall' title="Profile">
+                    <span class="hidden-xs hidden-sm">Wall</span> 
+                    <i class="fa fa-database" aria-hidden="true"></i>
+                </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/news'>News</NavLink>
+                <NavLink to='/music' title="Profile">
+                    <span class="hidden-xs hidden-sm">Music</span> 
+                    <i class="fa fa-music" aria-hidden="true"></i>
+                </NavLink>
             </div>
             <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/music'>Music</NavLink>
-            </div>
-            <div className={s.item}>
-                <NavLink activeClassName={s.activeLink} to='/settings'>Settings</NavLink>
+                <NavLink to='/settings' title="Profile">
+                    <span class="hidden-xs hidden-sm">Settings</span> 
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                </NavLink>
             </div>
       </nav>
     );

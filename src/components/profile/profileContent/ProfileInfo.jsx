@@ -9,11 +9,6 @@ import ProfileData from './ProfileData';
 const ProfileInfo = ({profile, isOwner, saveProfile}) => {
   let [editMode, setEditMode] = useState(false);
   
-  if (!profile) {
-    return <Loader />
-  }
-
-  
 
   const onSubmitProfileData = ({ aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts }) => {
     saveProfile( aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts).then(

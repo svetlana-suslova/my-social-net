@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.sass';
 import HeaderContainer from './components/header/HeaderContainer';
-import Navbar from './components/navbar/Navbar';
 import News from './components/news/News';
 import Music from './components/music/Music';
 import Settings from './components/settings/Settings';
@@ -14,8 +13,6 @@ import { compose } from 'redux';
 import Loader from './components/common/loader/Loader';
 import ErrorMessage from './components/common/errorMessage/ErrorMessage';
 import {withSuspense} from './hoc/withSuspense';
-import MyPostsContainer from './components/profile/myPosts/MyPostsContainer';
-const MessagesContainer = React.lazy(() => import('./components/profile/messages/MessagesContainer'));
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
 class App extends Component {
@@ -45,7 +42,6 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
             <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-            <Route path="/messages" render={withSuspense(MessagesContainer)}/>
             <Route path="/users" render={ () => 
               <UsersContainer /> }/>
             <Route path="/login" render={ () => 
@@ -53,7 +49,6 @@ class App extends Component {
             <Route path="/wall" render={ () => <News /> }/>
             <Route path="/music" render={ () => <Music /> }/>
             <Route path="/settings" render={ () => <Settings /> }/>
-            <Route path="/posts" render={ () => <MyPostsContainer /> }/>
             <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
           </Switch>
         </div>

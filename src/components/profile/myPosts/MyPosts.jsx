@@ -35,7 +35,7 @@ const MyPosts = ({posts, addPost}) => {
   }
 
   return (
-    <div className={s.content}>
+    <div className={s.profileWrapper}>
       <h3>My posts</h3>
       <AddPostsReduxForm onSubmit={onPostAdd}/>
       <div className={s.posts}>

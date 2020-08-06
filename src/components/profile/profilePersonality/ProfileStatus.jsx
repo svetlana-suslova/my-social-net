@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import s from './ProfileInfo.module.sass';
+import s from '../profileContent/ProfileInfo.module.sass';
 
-const ProfileStatusWithHooks = ({status, updateUserStatus}) => {
+const ProfileStatus = ({status, updateUserStatus}) => {
 
   let [editMode, setEditMode] = useState(false);
   let [actualStatus, setStatus] = useState(status);
@@ -39,4 +39,4 @@ const ProfileStatusWithHooks = ({status, updateUserStatus}) => {
   );
 }
 
-export default ProfileStatusWithHooks;
+export default ProfileStatus;

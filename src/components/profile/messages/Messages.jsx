@@ -38,7 +38,7 @@ const Messages = ({dialogs, messages, addMessage}) => {
   }
 
   return (
-    <div className={s.content}>
+    <div className={s.profileWrapper}>
       <div className={s.dialogs}>
         {dialogsElements}
       </div>

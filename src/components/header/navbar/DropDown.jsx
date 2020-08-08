@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import {NavLink} from 'react-router-dom';
 import s from './Navbar.module.sass';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
@@ -40,8 +39,7 @@ const DropDown = ({isAuth, login, logOut}) => {
                             </a>
                         </li>
                         <li>
-                        { isAuth
-                            ?  <a href="#" title={login} onClick={logOut}>
+                            <a href="#" title={login} onClick={logOut}>
                                 <div class="col-xs-4">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                                 </div>
@@ -49,15 +47,6 @@ const DropDown = ({isAuth, login, logOut}) => {
                                     <span>Logout</span>
                                 </div>
                             </a>
-                            : <NavLink to={'/login'} title="Login">
-                                <div class="col-xs-4">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                </div>
-                                <div class="col-xs-8 text-left">
-                                    <span>Login</span>
-                                </div>
-                            </NavLink>
-                        }
                         </li>
                 </ul>
             </DropdownMenu>

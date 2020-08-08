@@ -49,6 +49,7 @@ export const getAuthUserData = () => {
 }
 export const logIn = (email, password, rememberMe, captcha) => {
     return async (dispatch) => {
+        dispatch(toggleIsFetching(true));
         const response = await authAPI.logIn(email, password, rememberMe, captcha);
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData());
@@ -59,6 +60,7 @@ export const logIn = (email, password, rememberMe, captcha) => {
             let errorMessage = response.data.messages.length > 0 ? response.data.messages : "Error";
             dispatch(stopSubmit('login', {_error: errorMessage}));
         }
+        dispatch(toggleIsFetching(false));
     }
 }
 export const logOut = () => {

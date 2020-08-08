@@ -7,18 +7,22 @@ import {logIn} from '../../redux/auth-reducer';
 import { Redirect } from 'react-router-dom';
 import s from '../common/formControls/FormControls.module.sass';
 import styles from './Login.module.sass';
+import Loader from '../common/loader/Loader';
+import logo from '../../assets/img/logo.png'
 
 const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <Field name="email" 
+                <Field className={styles.formControl} 
+                name="email" 
                 placeholder="Email" 
                 component={Input}
                 validate={[required]}/>
             </div>
             <div>
-                <Field name="password" 
+                <Field className={styles.formControl}
+                name="password" 
                 placeholder="Password"
                 type="password" 
                 component={Input}
@@ -30,7 +34,8 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
                 type="checkbox"/>Remember me
             </div>
             { captchaUrl && <img className={styles.captcha} src={captchaUrl} alt="captcha"/> }
-            { captchaUrl && <Field name="captcha" 
+            { captchaUrl && <Field className={styles.formControl}
+                name="captcha" 
                 placeholder="Captcha" 
                 component={Input}
                 validate={[required]}/> }
@@ -39,7 +44,7 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
             </div> 
             }
             <div>
-                <button>Login</button>
+                <button className={styles.loginButton}>LOGIN</button>
             </div>
         </form>
     )       
@@ -47,7 +52,7 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
-const Login = ({logIn, isAuth, captchaUrl}) => {
+const Login = ({logIn, isAuth, captchaUrl, isFetching}) => {
     const onSubmitLogin = ({email, password, rememberMe, captcha}) => { //formData
         logIn(email, password, rememberMe, captcha);
     }
@@ -56,15 +61,25 @@ const Login = ({logIn, isAuth, captchaUrl}) => {
         return <Redirect to={'/profile'}/>
     }
     
-    return <div>
-        <h1>LOGIN</h1>
-        <LoginReduxForm captchaUrl={captchaUrl} onSubmit={onSubmitLogin}/>
-    </div>   
+    return (
+        <div className={styles.loginPage}>
+            <div className={styles.formBox}>
+                <div className={styles.formLogo}>
+                    <span>My</span>
+                    <img src={logo} alt="logo"/>
+                    <span>Net</span>
+                </div>
+                <LoginReduxForm captchaUrl={captchaUrl} onSubmit={onSubmitLogin}/>
+                {isFetching ? <Loader /> : null}
+            </div>
+        </div> 
+    )   
 }
 const mapStateToProps = (state) => {
     return {
       isAuth: state.auth.isAuth,
-      captchaUrl: state.auth.captchaUrl 
+      captchaUrl: state.auth.captchaUrl,
+      isFetching: state.auth.isFetching 
     }
   }
 export default connect(mapStateToProps, {logIn})(Login);

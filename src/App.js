@@ -3,7 +3,6 @@ import './App.sass';
 import HeaderContainer from './components/header/HeaderContainer';
 import News from './components/news/News';
 import Music from './components/music/Music';
-import Settings from './components/settings/Settings';
 import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
 import Login from './components/login/Login';
@@ -35,6 +34,19 @@ class App extends Component {
       return <ErrorMessage />
     }
 
+    if (!this.props.isAuth) {
+      return (
+        <Switch>
+          <Route exact path="/" render={ () => <Redirect to={"/login"}/> }/>
+          <Route path="/login" render={ () => <Login/> }/>
+          <Route path="/profile" render={ () => <Redirect to={"/login"}/> }/>
+          <Route path="/users" render={ () => <Redirect to={"/login"}/> }/>
+          <Route path="/wall" render={ () => <Redirect to={"/login"}/> }/>
+          <Route path="/music" render={ () => <Redirect to={"/login"}/> }/>
+        </Switch>
+      ); 
+    }
+  
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
@@ -42,13 +54,10 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
             <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-            <Route path="/users" render={ () => 
-              <UsersContainer /> }/>
-            <Route path="/login" render={ () => 
-              <Login/> }/>
+            <Route path="/users" render={ () => <UsersContainer /> }/>
             <Route path="/wall" render={ () => <News /> }/>
             <Route path="/music" render={ () => <Music /> }/>
-            <Route path="/settings" render={ () => <Settings /> }/>
+            <Route path="/login" render={ () => <Redirect to={"/profile"}/> }/>
             <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
           </Switch>
         </div>
@@ -59,7 +68,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
-  globalError: state.app.globalError
+  globalError: state.app.globalError,
+  isAuth: state.auth.isAuth
 });
 
 export default compose(

@@ -4,7 +4,7 @@ import s from './Navbar.module.sass';
 import DropDown from './DropDown';
 
 
-const Navbar = ({isAuth, login, logOut}) => {
+const Navbar = ({login, logOut}) => {
     return (
         <nav className={s.nav}>
             <div className={s.item}>
@@ -31,9 +31,10 @@ const Navbar = ({isAuth, login, logOut}) => {
                     <i class="fa fa-music" aria-hidden="true"></i>
                 </NavLink>
             </div>
-            <DropDown isAuth={isAuth}
-            login={login}
-            logOut={logOut} />
+            <div className={s.item}>
+                <DropDown login={login}
+                logOut={logOut} />
+            </div> 
       </nav>    
     );
 }

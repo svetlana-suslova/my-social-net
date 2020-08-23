@@ -43,7 +43,7 @@ const ProfileContent = ({profile, isOwner, saveProfile}) => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-            <MyPostsContainer />
+            <MyPostsContainer isOwner={isOwner} />
             </Col>
           </Row>
         </TabPane>
@@ -59,7 +59,7 @@ const ProfileContent = ({profile, isOwner, saveProfile}) => {
         <TabPane tabId="3">
           <Row>
             <Col sm="12">
-            <MessagesContainer/>
+            <MessagesContainer />
             </Col>
           </Row>
         </TabPane>

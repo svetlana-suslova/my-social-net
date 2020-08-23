@@ -7,25 +7,30 @@ import { TextArea } from '../../common/formControls/FormControls';
 
 const maxLength10 = maxLength(50);
 
-const AddPostsForm = ({handleSubmit}) => {
+const AddPostsForm = ({handleSubmit, isOwner}) => {
   return (
-      <form className={s.profileForm} onSubmit={handleSubmit}>
-          <div>
-              <Field name="newPostText" 
-              placeholder="Add your post" 
-              component={TextArea}
-              validate={[required, maxLength10]}/>
-          </div>
-          <div>
-              <button className={s.formButton}>Add post</button>
-          </div>
-      </form>
+    <>
+      {
+        isOwner &&
+        <form className={s.profileForm} onSubmit={handleSubmit}>
+            <div>
+                <Field name="newPostText" 
+                placeholder="Add your post" 
+                component={TextArea}
+                validate={[required, maxLength10]}/>
+            </div>
+            <div>
+                <button className={s.formButton}>Add post</button>
+            </div>
+        </form>
+      }
+    </> 
   )       
 }
 
 const AddPostsReduxForm = reduxForm({form: 'addPosts'})(AddPostsForm);
 
-const MyPosts = ({posts, addPost, profile}) => {
+const MyPosts = ({posts, addPost, profile, isOwner}) => {
 
   let postsElements = 
     posts.map(p =>  <Post profile={profile} message={p.text} likes={p.like} id={p.id} key={p.id}/>);
@@ -36,7 +41,7 @@ const MyPosts = ({posts, addPost, profile}) => {
 
   return (
     <div className={s.profileWrapper}>
-      <AddPostsReduxForm onSubmit={onPostAdd}/>
+      <AddPostsReduxForm onSubmit={onPostAdd} isOwner={isOwner}/>
       <div className={s.posts}>
         {postsElements}
       </div>  

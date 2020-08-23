@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import s from '../profileContent/ProfileInfo.module.sass';
 
-const ProfileStatus = ({status, updateUserStatus}) => {
+const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
 
   let [editMode, setEditMode] = useState(false);
   let [actualStatus, setStatus] = useState(status);
@@ -26,7 +26,10 @@ const ProfileStatus = ({status, updateUserStatus}) => {
   
   return (
     <>
-      { !editMode &&
+      { !isOwner &&
+      <i><span className={s.disabled}>{status || 'STATUS'}</span></i>
+      }
+      { !editMode && isOwner &&
       <i><span className={s.status} onClick={activateEditMode}>{status || 'STATUS'}</span></i>
       }
       { editMode &&

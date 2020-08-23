@@ -1,5 +1,5 @@
 import React from 'react';
-import userPhoto from '../../../assets/img/user.png';
+import userPhoto from '../../../assets/img/avatar.png';
 import s from './ProfileAvatar.module.sass';
 
 const ProfileAvatar = ({profile, isOwner, savePhoto}) => {

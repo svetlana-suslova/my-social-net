@@ -12,7 +12,7 @@ const ProfilePersonality = ({profile, isOwner, savePhoto, status, updateUserStat
       savePhoto={savePhoto}/>
       <h2 className={s.name}>{profile.fullName}</h2>
       <div className={s.status}>
-        <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+        <ProfileStatus isOwner ={isOwner} status={status} updateUserStatus={updateUserStatus}/>
       </div>
     </div>
   );

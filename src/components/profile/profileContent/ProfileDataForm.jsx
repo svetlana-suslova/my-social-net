@@ -10,7 +10,7 @@ const maxLength20 = maxLength(20);
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
     return (
-      <form className={s.frofileForm} onSubmit={handleSubmit}>
+      <form className={s.profileForm} onSubmit={handleSubmit}>
         { error && <div className={style.formError}>
             {error}</div> 
         }
@@ -54,7 +54,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
           </div> 
           })}
         </div>
-        <div className={s.save}><button className={s.saveButton}>Save</button></div>
+        <div><button className={s.formButton}>Save</button></div>
       </form>
     );
 }

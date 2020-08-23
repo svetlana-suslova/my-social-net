@@ -1,15 +1,15 @@
 import React from 'react';
 import Post from './post/Post';
-import s from './MyPosts.module.sass';
+import s from '../profileContent/ProfileInfo.module.sass';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLength } from '../../../utils/validators';
 import { TextArea } from '../../common/formControls/FormControls';
 
-const maxLength10 = maxLength(10);
+const maxLength10 = maxLength(50);
 
 const AddPostsForm = ({handleSubmit}) => {
   return (
-      <form onSubmit={handleSubmit}>
+      <form className={s.profileForm} onSubmit={handleSubmit}>
           <div>
               <Field name="newPostText" 
               placeholder="Add your post" 
@@ -17,7 +17,7 @@ const AddPostsForm = ({handleSubmit}) => {
               validate={[required, maxLength10]}/>
           </div>
           <div>
-              <button>Add post</button>
+              <button className={s.formButton}>Add post</button>
           </div>
       </form>
   )       
@@ -25,10 +25,10 @@ const AddPostsForm = ({handleSubmit}) => {
 
 const AddPostsReduxForm = reduxForm({form: 'addPosts'})(AddPostsForm);
 
-const MyPosts = ({posts, addPost}) => {
+const MyPosts = ({posts, addPost, profile}) => {
 
   let postsElements = 
-    posts.map(p =>  <Post message={p.text} likes={p.like} id={p.id} key={p.id}/>);
+    posts.map(p =>  <Post profile={profile} message={p.text} likes={p.like} id={p.id} key={p.id}/>);
   
   const onPostAdd = (formData) => {
     addPost(formData.newPostText);  
@@ -36,7 +36,6 @@ const MyPosts = ({posts, addPost}) => {
 
   return (
     <div className={s.profileWrapper}>
-      <h3>My posts</h3>
       <AddPostsReduxForm onSubmit={onPostAdd}/>
       <div className={s.posts}>
         {postsElements}

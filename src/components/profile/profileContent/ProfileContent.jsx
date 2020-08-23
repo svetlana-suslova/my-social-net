@@ -33,7 +33,7 @@ const ProfileContent = ({profile, isOwner, saveProfile}) => {
         </NavItem>
         <NavItem>
           <NavLink
-            className={classnames({ [s.active] : activeTab === '3' })}
+            className={classnames({ [s.disabled]: true })}
             onClick={() => { toggle('3'); }}>
             Chat
           </NavLink>

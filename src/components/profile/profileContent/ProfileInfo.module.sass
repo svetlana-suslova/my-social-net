@@ -21,23 +21,28 @@
   margin-bottom: 5px
   a
     font-style: italic 
-    font-size: 13px   
-.save
-  max-width: 350px     
-.saveButton
-  border: none
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22)
-  border-radius: 3px
-  padding: 0 10px
-  margin: 10px auto
+    font-size: 13px        
+.formButton
   display: block
-  font-style: italic
-  font-size: 12px
-  outline: none
-  width: 80px
+  width: 30%
+  height: 34px
+  padding: 6px 12px
+  font-size: 14px
+  line-height: 1.42857143
+  color: #fff
+  background-color: #4F5467
+  background-image: none
+  border: 1px solid transparent
+  border-radius: 4px
+  margin: 5px 0 20px 0
   &:hover
+    border: 1px solid #4F5467
+    color: #4F5467
     background: #edf1f5
-.frofileForm
+  &:focus
+    outline: none
+.profileForm
+  max-width: 350px
   input, textarea  
     border: 1px solid #ddd
     border-radius: 4px
@@ -79,5 +84,26 @@
     cursor: default
     background-color: #fff !important
     border-bottom-color: transparent !important
+.disabled
+  pointer-events: none
+.content
+  padding: 10px
+.posts
+  margin-top: 20px
+.profileImg
+  width: 50px
+  height: 50px
+  border-radius: 50%
+.profileMessage
+  padding-left: 50px
+.messageAvatar
+  width: 70px
+  height: 70px
+.profileLike
+  padding: 10px
+  color: #4F5467
+.likeCount
+  padding: 2px
+  color: #333
 
 

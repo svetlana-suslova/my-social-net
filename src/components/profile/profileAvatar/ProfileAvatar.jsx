@@ -13,7 +13,14 @@ const ProfileAvatar = ({profile, isOwner, savePhoto}) => {
       <div className={s.avatar}>
         <img src={profile.photos.large || userPhoto} alt="avatar"/>
         {
-          isOwner && <input type="file" onChange={onProfilePhotoSelected}/>
+          isOwner &&
+          <>
+            <label for="file-upload" className={s.fileUpload}>
+              <i class="fa fa-cloud-upload"></i>
+              <span className={s.fileUploadLabel}>Change photo</span>
+            </label>
+            <input id="file-upload" type="file" onChange={onProfilePhotoSelected}/>
+          </>
         }
       </div>
   );

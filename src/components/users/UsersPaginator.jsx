@@ -17,19 +17,19 @@ const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged,
         <div className={s.paginator}>
             {
                 portionNumber > 1 &&
-                <button onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> 
+                <button className={s.prev} onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> 
                 
             }
             {
                 pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => {
-                    return <span className={ classNames({[s.selectedPage] : currentPage === p}, s.pageNumber) }
+                    return <button className={ classNames({[s.selectedPage] : currentPage === p}, s.pageNumber) }
                             key={p} 
-                            onClick={ () => { onPageChanged(p) } }>{p}</span> })
+                            onClick={ () => { onPageChanged(p) } }>{p}</button> })
             }
             {
                 portionCount > portionNumber &&
-                <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> 
+                <button className={s.next} onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> 
                 
             }
         </div>

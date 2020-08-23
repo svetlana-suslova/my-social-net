@@ -5,6 +5,7 @@ import Users from './Users';
 import Loader from '../common/loader/Loader';
 import { compose } from 'redux';
 import { getUsers, getCurrentPage, getFollowingProgress, getPageSize, getTotalUsersCount, getIsFetching, getPortionSize } from '../../redux/users-selectors';
+import UsersPaginator from './UsersPaginator';
 
 class UsersContainer extends Component {
   componentDidMount() {
@@ -17,20 +18,18 @@ class UsersContainer extends Component {
   }
     
   render() {
-    const {isFetching, currentPage, pageSize, users, totalUsersCount, followingProgress, toggleFollowingProgress, unFollow, follow, portionSize} = this.props;
+    const {isFetching, currentPage, pageSize, users, totalUsersCount, followingProgress, unFollow, follow, portionSize} = this.props;
       return <>
-        { isFetching ? <Loader /> : null }
-        <Users users={users}
-        totalUsersCount={totalUsersCount}
+        <UsersPaginator totalUsersCount={totalUsersCount}
         pageSize={pageSize}
         currentPage={currentPage}
+        onPageChanged={this.onPageChanged}
+        portionSize={portionSize}/>
+        { isFetching ? <Loader /> : null }
+        <Users users={users}
         unFollow={unFollow}
         follow={follow}
-        onPageChanged={this.onPageChanged}
-        followingProgress={followingProgress}
-        toggleFollowingProgress={toggleFollowingProgress}
-        portionSize={portionSize}
-        />
+        followingProgress={followingProgress} />
     </>
   }
 }

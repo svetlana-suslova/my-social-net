@@ -1,25 +1,18 @@
 import React from 'react';
-import UsersPaginator from './UsersPaginator';
 import User from './User';
+import s from './Users.module.sass';
 
-const Users = ( {users, totalUsersCount, pageSize, currentPage, onPageChanged, followingProgress, unFollow, follow, portionSize} ) => {
+const Users = ( {users, followingProgress, unFollow, follow} ) => {
     
     return (
-        <div>
-            <UsersPaginator totalUsersCount={totalUsersCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChanged={onPageChanged}
-            portionSize={portionSize}/>
-            <div>
-                {
-                    users.map( u => <User key={u.id}
-                                    user={u}
-                                    followingProgress={followingProgress} 
-                                    unFollow={unFollow} 
-                                    follow={follow}/> )       
-                }
-            </div>   
+        <div className={s.userContent}>
+            {
+                users.map( u => <User key={u.id}
+                                user={u}
+                                followingProgress={followingProgress} 
+                                unFollow={unFollow} 
+                                follow={follow}/> )       
+            }
         </div>
     );
 }

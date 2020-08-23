@@ -30,7 +30,7 @@ const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
       <i><span className={s.disabled}>{status || 'STATUS'}</span></i>
       }
       { !editMode && isOwner &&
-      <i><span className={s.status} onClick={activateEditMode}>{status || 'STATUS'}</span></i>
+      <i><span title="Edit status" className={s.status} onClick={activateEditMode}>{status || 'STATUS'}</span></i>
       }
       { editMode &&
           <input className={s.statusEdit} autoFocus

@@ -1,5 +1,5 @@
 import { profileAPI } from '../api/api';
-import { stopSubmit } from 'redux-form';
+import { stopSubmit, reset } from 'redux-form';
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -41,7 +41,7 @@ const profileReducer = (state = initialState, action) => {
             return state;
     }
 }
-export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
+export const addPostText = (newPostText) => ({type: ADD_POST, newPostText});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserProfileStatus = (status) => ({type: SET_USER_PROFILE_STATUS, status});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
@@ -76,6 +76,12 @@ export const savePhoto = (file) => {
     }
 }
 
+export const addPost = (newPostText) => {
+    return async (dispatch) => {
+        dispatch(addPostText(newPostText));
+        dispatch(reset('addPosts'));
+    }
+}
 
 export const saveProfile = (aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts) => async (dispatch, getState) => {
     const userId = getState().auth.userId;

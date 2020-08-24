@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import s from './ProfileInfo.module.sass';
-import Loader from '../../common/loader/Loader';
-import userPhoto from '../../../assets/img/user.png';
 import ProfileDataReduxForm from './ProfileDataForm';
 import ProfileData from './ProfileData';
 

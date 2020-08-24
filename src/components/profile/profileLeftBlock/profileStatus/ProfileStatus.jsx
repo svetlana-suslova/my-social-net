@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from '../profileContent/ProfileInfo.module.sass';
+import s from './ProfileStatus.module.sass';
 
 const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
 
@@ -30,7 +30,7 @@ const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
       <i><span className={s.disabled}>{status || 'STATUS'}</span></i>
       }
       { !editMode && isOwner &&
-      <i><span title="Edit status" className={s.status} onClick={activateEditMode}>{status || 'STATUS'}</span></i>
+      <i><span className={s.status} title="Edit status" onClick={activateEditMode}>{status || 'STATUS'}</span></i>
       }
       { editMode &&
           <input className={s.statusEdit} autoFocus

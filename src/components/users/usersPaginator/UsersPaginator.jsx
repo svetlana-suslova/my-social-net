@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import s from './Users.module.sass';
+import s from './UsersPaginator.module.sass';
 import classNames from "classnames";
 
 const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged, portionSize} ) => {

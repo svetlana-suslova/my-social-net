@@ -11,8 +11,7 @@ class HeaderContainer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    login: state.auth.login,
-    isFetching: state.auth.isFetching
+    login: state.auth.login
 });
 
 export default compose(

@@ -27,7 +27,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
       </div>
       { isOwner && 
       <p className={s.edit}>
-        <a onClick={goToEditMode} title="edit profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
+        <a onClick={goToEditMode} title="Edit profile"><i className="fa fa-pencil" aria-hidden="true"></i> Edit profile</a>
       </p> }
     </>
   );

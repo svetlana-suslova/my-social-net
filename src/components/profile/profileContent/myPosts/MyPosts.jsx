@@ -1,9 +1,9 @@
 import React from 'react';
-import Post from './post/Post';
-import s from '../profileContent/ProfileInfo.module.sass';
+import Post from './Post';
+import s from './MyPosts.module.sass';
 import { reduxForm, Field } from 'redux-form';
-import { required, maxLength } from '../../../utils/validators';
-import { TextArea } from '../../common/formControls/FormControls';
+import { required, maxLength } from '../../../../utils/validators';
+import { TextArea } from '../../../common/formControls/FormControls';
 
 const maxLength10 = maxLength(50);
 

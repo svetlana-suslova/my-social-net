@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './News.module.sass';
+import s from './Wall.module.sass';
 
 
 const News = () => {

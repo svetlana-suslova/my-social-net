@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './App.sass';
+import s from './App.module.sass';
 import HeaderContainer from './components/header/HeaderContainer';
-import News from './components/news/News';
+import Wall from './components/wall/Wall';
 import Music from './components/music/Music';
 import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
@@ -48,19 +48,17 @@ class App extends Component {
     }
   
     return (
-      <div className='app-wrapper'>
+      <div className={s.appWrapper}>
         <HeaderContainer />
-        <div className='app-wrapper-content'>
-          <Switch>
-            <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
-            <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-            <Route path="/users" render={ () => <UsersContainer /> }/>
-            <Route path="/wall" render={ () => <News /> }/>
-            <Route path="/music" render={ () => <Music /> }/>
-            <Route path="/login" render={ () => <Redirect to={"/profile"}/> }/>
-            <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" render={ () => <Redirect to={"/profile"}/> }/>
+          <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+          <Route path="/users" render={ () => <UsersContainer /> }/>
+          <Route path="/wall" render={ () => <Wall /> }/>
+          <Route path="/music" render={ () => <Music /> }/>
+          <Route path="/login" render={ () => <Redirect to={"/profile"}/> }/>
+          <Route path="*" render={ () => <div>404 PAGE NOT FOUND</div> }/>
+        </Switch>
       </div>
     )  
   }

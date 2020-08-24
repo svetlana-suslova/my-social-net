@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './ProfileInfo.module.sass';
 import { reduxForm, Field } from 'redux-form'
-import { required, maxLength } from '../../../utils/validators';
-import { Input, TextArea } from '../../common/formControls/FormControls';
-import style from '../../common/formControls/FormControls.module.sass';
+import { required, maxLength } from '../../../../utils/validators';
+import { Input, TextArea } from '../../../common/formControls/FormControls';
+import style from '../../../common/formControls/FormControls.module.sass';
 
 const maxLength50 = maxLength(50);
 const maxLength20 = maxLength(20);

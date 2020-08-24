@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../../profileContent/ProfileInfo.module.sass';
+import s from './MyPosts.module.sass';
 import ProfileAvatar from '../../profileAvatar/ProfileAvatar';
 
 const Post = ({message, likes, profile}) => {
@@ -11,7 +11,7 @@ const Post = ({message, likes, profile}) => {
         <div className={s.profileMessage}>
           {message}
           <span className={s.profileLike}>
-            <i class="fa fa-heart"></i>
+            <i className="fa fa-heart"></i>
             <span className={s.likeCount}>{likes}</span>
           </span>
         </div>

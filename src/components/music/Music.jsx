@@ -5,7 +5,7 @@ import s from './Music.module.sass';
 const Music = () => {
     return (
       <div>
-        Music
+        Soundtrack
       </div>  
     );
 }

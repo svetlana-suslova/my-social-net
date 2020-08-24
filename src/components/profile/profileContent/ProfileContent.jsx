@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import s from './ProfileInfo.module.sass';
+import s from './ProfileContent.module.sass';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import ProfileInfo from './ProfileInfo';
-import MyPostsContainer from '../myPosts/MyPostsContainer';
-import MessagesContainer from '../messages/MessagesContainer';
+import ProfileInfo from './profileInfo/ProfileInfo';
+import MyPostsContainer from './myPosts/MyPostsContainer';
+import MessagesContainer from './messages/MessagesContainer';
 
 
 const ProfileContent = ({profile, isOwner, saveProfile}) => {

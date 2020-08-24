@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileLeftBlock from './profileLeftBlock/ProfileLeftBlock';
+import ProfileLeft from './profileLeft/ProfileLeft';
 import s from './Profile.module.sass';
 import ProfileContent from './profileContent/ProfileContent';
 import Loader from './../common/loader/Loader';
@@ -12,7 +12,7 @@ const Profile = ({profile, status, updateUserStatus, isOwner, savePhoto, savePro
   return (
     <>
       <div className={s.cover}></div>
-      <ProfileLeftBlock profile={profile}
+      <ProfileLeft profile={profile}
       isOwner={isOwner}
       savePhoto={savePhoto}
       status={status} 

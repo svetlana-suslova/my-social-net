@@ -1,9 +1,9 @@
 import React from 'react';
 import ProfileStatus from './profileStatus/ProfileStatus';
-import s from './ProfileLeftBlock.module.sass';
+import s from './ProfileLeft.module.sass';
 import ProfileAvatar from '../profileAvatar/ProfileAvatar';
 
-const ProfileLeftBlock = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
+const ProfileLeft = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
 
   return (
     <div className={s.personalProfile}>
@@ -18,4 +18,4 @@ const ProfileLeftBlock = ({profile, isOwner, savePhoto, status, updateUserStatus
   );
 }
 
-export default ProfileLeftBlock;
+export default ProfileLeft;

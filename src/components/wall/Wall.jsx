@@ -3,10 +3,16 @@ import s from './Wall.module.sass';
 
 
 const News = () => {
-    return (
+    return ( <>
       <div>
-        News
-      </div>  
-    );
+        News.
+      </div>
+      <div>
+        News..
+      </div> 
+      <div>
+        News...
+    </div>   
+  </> );
 }
 export default News;

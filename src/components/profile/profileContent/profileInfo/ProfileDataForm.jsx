@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import { required, maxLength } from '../../../../utils/validators';
 import { Input, TextArea } from '../../../common/formControls/FormControls';
 import style from '../../../common/formControls/FormControls.module.sass';
+import { MainMediumButton } from '../../../common/buttons/Buttons';
 
 const maxLength50 = maxLength(50);
 const maxLength20 = maxLength(20);
@@ -54,7 +55,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
           </div> 
           })}
         </div>
-        <div><button className={s.formButton}>Save</button></div>
+        <div><MainMediumButton text="Save"/></div>
       </form>
     );
 }

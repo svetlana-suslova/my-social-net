@@ -8,8 +8,8 @@ const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
 
 let initialState = {
     posts: [
-        {id: 1, text: 'Hi there!', like: 5},
-        {id: 2, text: 'How are you?', like: 12}
+        {id: 1, text: 'В ритме', like: 155},
+        {id: 2, text: 'По жизни', like: 127}
     ],
     profile: null,
     status: ''
@@ -20,7 +20,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, {id: 5, text: action.newPostText, like: 0}]
+                posts: [...state.posts, {id: 5, text: action.newPostText, like: '+10'}]
             };
         case SET_USER_PROFILE:
             return {

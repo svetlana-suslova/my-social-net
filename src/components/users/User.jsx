@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.sass';
 import userPhoto from '../../assets/img/avatar.png';
 import {NavLink} from 'react-router-dom';
+import { MainSmallButton, InvertSmallButton } from '../common/buttons/Buttons';
 
 const User = ( {user, followingProgress, unFollow, follow} ) => {
     
@@ -18,10 +19,10 @@ const User = ( {user, followingProgress, unFollow, follow} ) => {
                 <div>
                     {
                         user.followed
-                        ? <button className={s.unfollowButton} disabled={followingProgress.some(id => id === user.id)} 
-                        onClick={ () => { unFollow( user.id) } }>Unfollow</button> 
-                        : <button className={s.followButton} disabled={followingProgress.some(id => id === user.id)} 
-                        onClick={ () => { follow( user.id) } }>Follow</button>
+                        ? <MainSmallButton text="Unfollow" disabled={followingProgress.some(id => id === user.id)}
+                        onClick={ () => { unFollow( user.id) } } />
+                        : <InvertSmallButton text="Follow" disabled={followingProgress.some(id => id === user.id)}
+                        onClick={ () => { follow( user.id) } } />
                     }
                 </div>
         </div>

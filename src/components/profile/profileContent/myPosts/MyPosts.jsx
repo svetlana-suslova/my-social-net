@@ -4,6 +4,7 @@ import s from './MyPosts.module.sass';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLength } from '../../../../utils/validators';
 import { TextArea } from '../../../common/formControls/FormControls';
+import { MainMediumButton } from '../../../common/buttons/Buttons';
 
 const maxLength10 = maxLength(50);
 
@@ -19,8 +20,8 @@ const AddPostsForm = ({handleSubmit, isOwner}) => {
                 component={TextArea}
                 validate={[required, maxLength10]}/>
             </div>
-            <div>
-                <button className={s.formButton}>Add post</button>
+            <div className={s.formButton}>
+              <MainMediumButton text="Add post"/>
             </div>
         </form>
       }

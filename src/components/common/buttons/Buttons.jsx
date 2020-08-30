@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
     display: block;
-    width: ${props => props.small ? "80px" : "110px"};
+    width: ${props => props.small ? "85px" : "110px"};
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -17,11 +17,20 @@ const Button = styled.button`
     &:hover {
         border: 1px solid #4F5467;
         color: #4F5467;
-        background: #edf1f5;
+        background-color: #edf1f5;
     }  
     &:focus {
         outline: none;
     }   
+`;
+const Login = styled(Button)`
+    width: 100%;
+    margin-bottom: 10px;
+    &:hover {
+        border: 1px solid rgb(232, 240, 254);
+        color: #fff;
+        background-color: #4F5467;
+    }
 `;
 const InvertedButton = styled(Button)`
     color: #4F5467;
@@ -49,5 +58,11 @@ export const SmallButton = ({text, ...props}) => {
 export const InvertedSmallButton = ({text, ...props}) => {
     return (
         <InvertedButton {...props} small>{text}</InvertedButton>
+    );   
+}
+
+export const LoginButton = ({text, ...props}) => {
+    return (
+        <Login {...props}>{text}</Login>
     );   
 }

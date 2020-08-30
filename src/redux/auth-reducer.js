@@ -56,9 +56,10 @@ export const logIn = (email, password, rememberMe, captcha) => {
         } else {
             if (response.data.resultCode === 10) {
                 dispatch(getCaptcha());
+                dispatch(toggleIsFetching(false));
             }
-            let errorMessage = response.data.messages.length > 0 ? response.data.messages : "Error";
-            dispatch(stopSubmit('login', {_error: errorMessage}));
+            dispatch(stopSubmit('login', {_error: response.data.messages[0]}));
+            return Promise.reject(response.data.messages[0]);
         }
         dispatch(toggleIsFetching(false));
     }

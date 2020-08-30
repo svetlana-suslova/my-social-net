@@ -5,7 +5,7 @@ import Wall from './components/wall/Wall';
 import Music from './components/music/Music';
 import {Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/users/UsersContainer';
-import Login from './components/login/Login';
+import LoginContainer from './components/login/LoginContainer';
 import {initializeApp, catchGlobalError} from './redux/app-reducer';
 import {connect} from 'react-redux';
 import { compose } from 'redux';
@@ -38,7 +38,7 @@ class App extends Component {
       return (
         <Switch>
           <Route exact path="/" render={ () => <Redirect to={"/login"}/> }/>
-          <Route path="/login" render={ () => <Login/> }/>
+          <Route path="/login" render={ () => <LoginContainer/> }/>
           <Route path="/profile" render={ () => <Redirect to={"/login"}/> }/>
           <Route path="/users" render={ () => <Redirect to={"/login"}/> }/>
           <Route path="/wall" render={ () => <Redirect to={"/login"}/> }/>

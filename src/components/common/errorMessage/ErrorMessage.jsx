@@ -1,9 +1,15 @@
 import React from 'react';
-import s from './ErrorMessage.module.sass';
+import styled from 'styled-components';
 
 const ErrorMessage = () => {
+    const ErrorMessage = styled.div`
+        text-align: center;
+        padding-top: 100px;
+        font-size: 32px;
+        color: #e32636;
+    `;
     return (
-        <div className={s.errorMessage}>Something went wrong!</div>
+        <ErrorMessage>Something went wrong!</ErrorMessage>
     );   
 }
 export default ErrorMessage;

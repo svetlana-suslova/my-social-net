@@ -1,18 +1,33 @@
 import React from 'react';
-import s from './Users.module.sass';
+import styled from 'styled-components';
 import userPhoto from '../../assets/img/avatar.png';
 import {NavLink} from 'react-router-dom';
 import { SmallButton, InvertedSmallButton } from '../common/buttons/Buttons';
 
 const User = ( {user, followingProgress, unFollow, follow} ) => {
     
+    const UserItem = styled.div`
+        padding: 15px 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    `;
+    const UserPhoto = styled.div`
+        width: 110px;
+        height: 110px;
+        img {
+            border-radius: 50%;
+        }
+    `;
+    
     return (   
-        <div className={s.userItem}>
-                <div className={s.userPhoto}>
+        <UserItem>
+                <UserPhoto>
                     <NavLink to={`/profile/${user.id}`}>
                         <img src={user.photos.small != null ? user.photos.small : userPhoto} alt="Avatar"/>
                     </NavLink>   
-                </div>
+                </UserPhoto>
                 <div>
                     <div>{user.name}</div>
                 </div>
@@ -25,7 +40,7 @@ const User = ( {user, followingProgress, unFollow, follow} ) => {
                         onClick={ () => { follow( user.id) } } />
                     }
                 </div>
-        </div>
+        </UserItem>
     );
 }
 export default User;

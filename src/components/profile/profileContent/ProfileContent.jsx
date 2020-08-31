@@ -5,9 +5,21 @@ import classnames from 'classnames';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import MyPostsContainer from './myPosts/MyPostsContainer';
 import MessagesContainer from './messages/MessagesContainer';
+import styled from 'styled-components';
 
 
 const ProfileContent = ({profile, isOwner, saveProfile}) => {
+  const TabBar = styled(Nav)`
+    padding-left: 130px;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    a, a:link, a:visited, a:focus, &:hover {
+      color: #404040;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  `;
+
   const [activeTab, setActiveTab] = useState('2');
 
   const toggle = tab => {
@@ -16,7 +28,7 @@ const ProfileContent = ({profile, isOwner, saveProfile}) => {
 
   return (
     <>
-      <Nav tabs className={s.nav}>
+      <TabBar tabs>
         <NavItem>
           <NavLink
             className={classnames({ [s.active] : activeTab === '1' })}
@@ -38,7 +50,7 @@ const ProfileContent = ({profile, isOwner, saveProfile}) => {
             Chat
           </NavLink>
         </NavItem>
-      </Nav>
+      </TabBar>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Row>

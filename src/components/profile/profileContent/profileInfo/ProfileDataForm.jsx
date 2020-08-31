@@ -1,5 +1,4 @@
 import React from 'react';
-import s from './ProfileInfo.module.sass';
 import { reduxForm, Field } from 'redux-form'
 import { required, maxLength } from '../../../../utils/validators';
 import { FormInput, FormTextArea, FormError } from '../../../common/formControls/FormControls';
@@ -14,18 +13,32 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
   const Form = styled.form`
     max-width: 350px;
   `;
+  const Description = styled.div`
+    margin-bottom: 10px;
+  `;
+  const Name = styled.div`
+    text-transform: capitalize;
+  `;
+  const Contacts = styled.div`
+    margin-bottom: 5px;
+    a {
+      font-style: italic;
+      font-size: 13px;
+    }
+  `;
+
     return (
       <Form onSubmit={handleSubmit}>
         { error && <FormError error={error} /> 
         }
-        <div className={s.description}>
-            <div className={s.name}>
+        <Description>
+            <Name>
                 <span><b>Name: </b></span>
                 <Field name="fullName" 
                 placeholder="Name"
                 component={FormInput}
                 validate={[required, maxLength20]}/>
-            </div>
+            </Name>
             <div>
                 <span><b>About me: </b></span>
                 <Field name="aboutMe"
@@ -37,7 +50,6 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
                 <div><b>Looking for a job: </b></div>
                 <Field name="lookingForAJob"
                 type="checkbox"
-                className={s.check}
                 component="input"/>
             </div>
             <div>
@@ -47,8 +59,8 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
                 component={FormTextArea}
                 validate={[required, maxLength50]}/>
             </div>
-        </div>   
-        <div className={s.contacts}>
+        </Description>   
+        <Contacts>
           {Object.keys(profile.contacts).filter(key => key !== 'mainLink' && key !== 'vk').map(key => {
           return <div key={key}>
               <span><b>{key}: </b></span>
@@ -57,7 +69,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
                 component={FormInput}/>
           </div> 
           })}
-        </div>
+        </Contacts>
         <div><MediumButton text="Save"/></div>
       </Form>
     );

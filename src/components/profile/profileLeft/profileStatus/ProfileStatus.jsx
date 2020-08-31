@@ -1,7 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import s from './ProfileStatus.module.sass';
+import styled from 'styled-components';
 
 const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
+
+  const Status = styled.span`
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+`;
+  const Disabled = styled.span`
+    pointer-events: none;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  `;
+  const StatusEdit = styled.input`
+    margin: 0 auto;
+    min-width: 180px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 5px 3px 5px 6px rgba(237,241,245,0.8);
+    &:focus {
+      outline: 1px solid #edf1f5;
+    }   
+  `;
 
   let [editMode, setEditMode] = useState(false);
   let [actualStatus, setStatus] = useState(status);
@@ -27,13 +52,13 @@ const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
   return (
     <>
       { !isOwner &&
-      <i><span className={s.disabled}>{status || 'STATUS'}</span></i>
+      <i><Disabled>{status || 'STATUS'}</Disabled></i>
       }
       { !editMode && isOwner &&
-      <i><span className={s.status} title="Edit status" onClick={activateEditMode}>{status || 'STATUS'}</span></i>
+      <i><Status title="Edit status" onClick={activateEditMode}>{status || 'STATUS'}</Status></i>
       }
       { editMode &&
-          <input className={s.statusEdit} autoFocus
+          <StatusEdit autoFocus
           onBlur={deactivateEditMode}
           onChange={onStatusChange} 
           value={actualStatus}/>

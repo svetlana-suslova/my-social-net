@@ -1,44 +1,10 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
 import classNames from "classnames";
 import s from './UsersPaginator.module.sass';
+import { PaginatorControl } from '../../common/buttons/Buttons';
+import LeftPanel from '../../common/blocks/LeftPanel';
 
 const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged, portionSize} ) => {
-
-    const Paginator = styled.div`
-        display: flex;
-        flex-direction: column;
-        box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
-        position: absolute;
-        width: 240px;
-        height: 100%;
-        top: 0px;
-        padding: 50px 30px;
-        margin-left: -240px;
-        background: #ffffff;
-    `;
-    const Control = styled.button`
-      display: block;
-      width: 100%;
-      height: 34px;
-      padding: 6px 12px;
-      font-size: 14px;
-      line-height: 1.42857143;
-      color: #fff;
-      background-color: #4F5467;
-      background-image: none;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      margin: 5px 0;
-      &:hover {
-        border: 1px solid #4F5467;
-        color: #4F5467;
-        background: #edf1f5;
-      }
-      &:focus {
-        outline: none;
-      }   
-    `;
     
     const pagesCount = Math.ceil(totalUsersCount / pageSize);
     const pages = [];
@@ -51,10 +17,10 @@ const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged,
     const rightPortionPageNumber = portionNumber * portionSize;
 
     return (
-        <Paginator>
+        <LeftPanel>
             {
                 portionNumber > 1 &&
-                <Control onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</Control> 
+                <PaginatorControl onClick={() => { setPortionNumber(portionNumber - 1) }} text="PREV" /> 
                 
             }
             {
@@ -66,10 +32,10 @@ const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged,
             }
             {
                 portionCount > portionNumber &&
-                <Control onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</Control> 
+                <PaginatorControl onClick={() => { setPortionNumber(portionNumber + 1) }} text="NEXT" />
                 
             }
-        </Paginator>
+        </LeftPanel>
     );
 }
 export default UsersPaginator;

@@ -32,6 +32,11 @@ const Login = styled(Button)`
         background-color: #4F5467;
     }
 `;
+const Paginator = styled(Button)`
+    width: 100%;
+    margin: 5px 0;
+`;
+
 const InvertedButton = styled(Button)`
     color: #4F5467;
     background-color: #edf1f5;
@@ -64,5 +69,10 @@ export const InvertedSmallButton = ({text, ...props}) => {
 export const LoginButton = ({text, ...props}) => {
     return (
         <Login {...props}>{text}</Login>
+    );   
+}
+export const PaginatorControl = ({text, ...props}) => {
+    return (
+        <Paginator {...props}>{text}</Paginator>
     );   
 }

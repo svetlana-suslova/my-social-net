@@ -44,8 +44,9 @@ const DropDown = ({login, logOut}) => {
             display: block;
             overflow: hidden;
             padding: 8px 20px;
-            &:hover {
+            &:hover, &:focus {
                 background-color: rgba(237,241,245,0.8);
+                color: #404040;
             }
         }
     `;

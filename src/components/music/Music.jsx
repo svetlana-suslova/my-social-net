@@ -6,6 +6,7 @@ const Music = () => {
   const Icon = styled.div`
     i {
       padding: 5px;
+      font-size: 26px;
     }
     a, a:focus, a:hover {
       color: #e6381b;

@@ -1,9 +1,54 @@
 import React, { useState } from 'react';
-import s from './DropDown.module.sass';
 import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import styled from 'styled-components';
 
 
 const DropDown = ({login, logOut}) => {
+
+    const SettingsBtn = styled.button`
+        background-color: transparent;
+        color: #ffffff;
+        border: none;
+        text-decoration: none;
+        display: inline;
+        margin: 0;
+        padding: 0;
+        &:hover, &:focus {
+            outline: none;
+        }
+        i {
+            padding: 3px;
+            font-size: 18px;
+            &.fa-globe {
+                font-size: 17px;
+            }
+        }
+    `;
+    const DropDownMenu = styled(DropdownMenu)`
+        padding: 0;
+        min-width: 220px;
+        text-align: center;
+        border-radius: 0;
+        border: none;
+        &:focus {
+            outline: none;
+        }
+    `; 
+    const DropDownList = styled.ul`
+        list-style: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-inline-start: 0;
+        a {
+            color: #404040;
+            display: block;
+            overflow: hidden;
+            padding: 8px 20px;
+            &:hover {
+                background-color: rgba(237,241,245,0.8);
+            }
+        }
+    `;
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -11,13 +56,13 @@ const DropDown = ({login, logOut}) => {
     return (
         <Dropdown isOpen={dropdownOpen} toggle={toggle} title="Settings">
             <DropdownToggle tag="span" data-toggle="dropdown" aria-expanded={dropdownOpen}>
-                <button className={s.linkButton}>
+                <SettingsBtn>
                     <span className="hidden-xs hidden-sm">Settings</span> 
                     <i className="fa fa-cogs"></i>
-                </button>
+                </SettingsBtn>
             </DropdownToggle>
-            <DropdownMenu className={s.dropdownMenu}>
-                <ul>
+            <DropDownMenu>
+                <DropDownList>
                     <li>
                         <a href="#" title="English">
                             <div className="col-xs-4">
@@ -48,8 +93,8 @@ const DropDown = ({login, logOut}) => {
                             </div>
                         </a>
                     </li>
-                </ul>
-            </DropdownMenu>
+                </DropDownList>
+            </DropDownMenu>
         </Dropdown>   
     );
 }

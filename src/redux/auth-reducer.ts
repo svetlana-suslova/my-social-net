@@ -6,15 +6,16 @@ const TOGGLE_IS_FETCHING = 'auth/TOGGLE_IS_FETCHING';
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    userId: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false,
     isFetching: false,
-    captchaUrl: null
+    captchaUrl: null as string | null
 };
+type initialStateType = typeof initialState;
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): initialStateType => {
     switch(action.type) {
         case SET_AUTH_USER_DATA:
         case GET_CAPTCHA_URL_SUCCESS:
@@ -25,18 +26,38 @@ const authReducer = (state = initialState, action) => {
         case TOGGLE_IS_FETCHING:
             return {
                 ...state,
-                isFetching: action.isFetching 
+                isFetching: action.isFetching
             };
         default:
             return state;
     }
 }
-export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}});
-export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const getCaptchaUrlSuccess = (captchaUrl) => ({type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}});
+
+type setAuthUserDataActionPayloadType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+type setAuthUserDataActionType = {
+    type: typeof SET_AUTH_USER_DATA
+    payload: setAuthUserDataActionPayloadType
+}
+type toggleIsFetchingActionType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
+type getCaptchaUrlSuccessActionType = {
+    type: typeof GET_CAPTCHA_URL_SUCCESS
+    payload: {captchaUrl: string}
+}
+
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserDataActionType => ({type: SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}});
+export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingActionType => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const getCaptchaUrlSuccess = (captchaUrl: string): getCaptchaUrlSuccessActionType => ({type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}});
 
 export const getAuthUserData = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         dispatch(toggleIsFetching(true));
         const response = await authAPI.getAuth();
         if (response.data.resultCode === 0) {
@@ -47,8 +68,8 @@ export const getAuthUserData = () => {
         return response;
     }
 }
-export const logIn = (email, password, rememberMe, captcha) => {
-    return async (dispatch) => {
+export const logIn = (email: string, password: string, rememberMe: boolean, captcha: string) => {
+    return async (dispatch: any) => {
         dispatch(toggleIsFetching(true));
         const response = await authAPI.logIn(email, password, rememberMe, captcha);
         if (response.data.resultCode === 0) {
@@ -65,7 +86,7 @@ export const logIn = (email, password, rememberMe, captcha) => {
     }
 }
 export const logOut = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         const response = await authAPI.logOut();
         if (response.data.resultCode === 0) {
             dispatch(setAuthUserData(null, null, null, false));
@@ -74,7 +95,7 @@ export const logOut = () => {
 }
 
 export const getCaptcha = () => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         const response = await securityAPI.getCaptcha();
         const captchaUrl = response.data.url;
         dispatch(getCaptchaUrlSuccess(captchaUrl));

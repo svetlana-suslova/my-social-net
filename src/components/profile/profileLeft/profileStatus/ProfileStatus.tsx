@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import styled from 'styled-components';
 
-const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
+type props = {
+  status: string 
+  isOwner: boolean 
+  updateUserStatus: (status: string) => void
+}
+
+const ProfileStatus: React.FC<props> = ({status, updateUserStatus, isOwner}) => {
 
   const Status = styled.span`
     display: block;
@@ -44,7 +50,7 @@ const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
     updateUserStatus(actualStatus);
   }
 
-  const onStatusChange = (e) => {
+  const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
     setStatus(e.currentTarget.value);
     
   }

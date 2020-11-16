@@ -1,13 +1,21 @@
 import React, {useState} from 'react';
-import classNames from "classnames";
+import classNames from 'classnames';
 import s from './UsersPaginator.module.sass';
 import { PaginatorControl } from '../../common/buttons/Buttons';
 import LeftPanel from '../../common/blocks/LeftPanel';
 
-const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged, portionSize} ) => {
+type props = {
+    totalUsersCount: number 
+    pageSize: number 
+    currentPage: number 
+    onPageChanged: (p: number) => void 
+    portionSize: number
+}
+
+const UsersPaginator: React.FC<props> = ( {totalUsersCount, pageSize, currentPage, onPageChanged, portionSize} ) => {
     
     const pagesCount = Math.ceil(totalUsersCount / pageSize);
-    const pages = [];
+    const pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }

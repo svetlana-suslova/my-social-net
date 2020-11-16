@@ -1,8 +1,16 @@
 import React from 'react';
 import User from './User';
 import styled from 'styled-components';
+import {userType} from '../../types/types';
 
-const Users = ( {users, followingProgress, unFollow, follow} ) => {
+type props = {
+    users: Array<userType>, 
+    followingProgress: Array<number> 
+    unFollow: (userId: number) => void 
+    follow: (userId: number) => void
+}
+
+const Users: React.FC<props> = ( {users, followingProgress, unFollow, follow} ) => {
 
     const UserContent = styled.div`
         background: #ffffff;

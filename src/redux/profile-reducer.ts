@@ -1,6 +1,6 @@
 import { profileAPI } from '../api/api';
 import { stopSubmit, reset } from 'redux-form';
-import { postType,  profileType, photosType} from './../types/types';
+import { postType,  profileType, photosType, contactsType} from './../types/types';
 
 const ADD_POST = 'profile/ADD-POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -103,10 +103,9 @@ export const addPost = (newPostText: string) => {
     }
 }
 
-// export const saveProfile = (aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts) => async (dispatch: any, getState: any) => {
-export const saveProfile = (profile: profileType) => async (dispatch: any, getState: any) => {
+export const saveProfile = (aboutMe: string, fullName: string, lookingForAJob: boolean, lookingForAJobDescription: string, contacts: contactsType) => async (dispatch: any, getState: any) => {
     const userId = getState().auth.userId;
-    const response = await profileAPI.saveProfile(profile);
+    const response = await profileAPI.saveProfile( aboutMe, fullName, lookingForAJob, lookingForAJobDescription, contacts);
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
     } else {

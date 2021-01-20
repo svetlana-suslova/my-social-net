@@ -1,3 +1,4 @@
+import { resultCodesEnum, resultCodeCapctha } from './../api/api';
 import { authAPI, securityAPI } from '../api/api';
 import { stopSubmit } from 'redux-form';
 
@@ -60,8 +61,8 @@ export const getAuthUserData = () => {
     return async (dispatch: any) => {
         dispatch(toggleIsFetching(true));
         const response = await authAPI.getAuth();
-        if (response.data.resultCode === 0) {
-            const {id, email, login} = response.data.data;
+        if (response.resultCode === resultCodesEnum.Success) {
+            const {id, email, login} = response.data;
             dispatch(setAuthUserData(id, email, login, true));
         }
         dispatch(toggleIsFetching(false));
@@ -72,15 +73,15 @@ export const logIn = (email: string, password: string, rememberMe: boolean, capt
     return async (dispatch: any) => {
         dispatch(toggleIsFetching(true));
         const response = await authAPI.logIn(email, password, rememberMe, captcha);
-        if (response.data.resultCode === 0) {
+        if (response.resultCode === resultCodesEnum.Success) {
             dispatch(getAuthUserData());
         } else {
-            if (response.data.resultCode === 10) {
+            if (response.resultCode === resultCodeCapctha.CaptchaIsRequired) {
                 dispatch(getCaptcha());
                 dispatch(toggleIsFetching(false));
             }
-            dispatch(stopSubmit('login', {_error: response.data.messages[0]}));
-            return Promise.reject(response.data.messages[0]);
+            dispatch(stopSubmit('login', {_error: response.messages[0]}));
+            return Promise.reject(response.messages[0]);
         }
         dispatch(toggleIsFetching(false));
     }
@@ -88,7 +89,7 @@ export const logIn = (email: string, password: string, rememberMe: boolean, capt
 export const logOut = () => {
     return async (dispatch: any) => {
         const response = await authAPI.logOut();
-        if (response.data.resultCode === 0) {
+        if (response.resultCode === resultCodesEnum.Success) {
             dispatch(setAuthUserData(null, null, null, false));
         }
     }

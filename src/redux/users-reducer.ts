@@ -1,6 +1,8 @@
 import { userType } from './../types/types';
 import { usersAPI, followAPI } from '../api/api';
 import { Dispatch } from 'redux';
+import {appStateType} from './redux-store';
+import {ThunkAction} from 'redux-thunk';
 
 const FOLLOW = 'users/FOLLOW';
 const UNFOLLOW = 'users/UNFOLLOW';
@@ -111,6 +113,7 @@ type toggleFollowingProgressActionType = {
     userId: number
 }
 
+
 export const followUserSuccess = (userId: number): followUserSuccessActionType => ({type: FOLLOW, userId});
 export const unFollowUserSuccess = (userId: number): unFollowUserSuccessActionType => ({type: UNFOLLOW, userId});
 export const setUsers = (users: Array<userType>): setUsersActionType => ({type: SET_USERS, users});
@@ -120,6 +123,7 @@ export const toggleIsFetching = (isFetching: boolean): toggleIsFetchingActionTyp
 export const toggleFollowingProgress = (isFetching: boolean, userId: number): toggleFollowingProgressActionType => ({type: TOGGLE_FOLLOWING_PROGRESS, isFetching, userId});
 
 type dispatchType = Dispatch<actionsTypes>;
+type thunkType = ThunkAction<Promise<void>, appStateType, unknown, actionsTypes>;
 
 export const queryUsers = (currentPage: number, pageSize: number) => (dispatch: dispatchType) => {
     dispatch(toggleIsFetching(true));
@@ -131,7 +135,7 @@ export const queryUsers = (currentPage: number, pageSize: number) => (dispatch: 
     });
 }
 
-export const unFollow = (userId: number) => {
+export const unFollow = (userId: number): thunkType => {
     return async (dispatch: dispatchType) => {
         dispatch(toggleFollowingProgress(true, userId));
         const response = await followAPI.unFollow(userId);
@@ -141,7 +145,7 @@ export const unFollow = (userId: number) => {
         dispatch(toggleFollowingProgress(false, userId));
     }
 }
-export const follow = (userId: number) => {
+export const follow = (userId: number): thunkType => {
     return async (dispatch: dispatchType) => {
         dispatch(toggleFollowingProgress(true, userId));
         const response = await followAPI.follow(userId);

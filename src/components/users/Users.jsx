@@ -1,11 +1,21 @@
 import React from 'react';
 import User from './User';
-import s from './Users.module.sass';
+import styled from 'styled-components';
 
 const Users = ( {users, followingProgress, unFollow, follow} ) => {
+
+    const UserContent = styled.div`
+        background: #ffffff;
+        line-height: 25px;
+        padding: 15px;
+        margin-left: 130px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    `;
     
     return (
-        <div className={s.userContent}>
+        <UserContent>
             {
                 users.map( u => <User key={u.id}
                                 user={u}
@@ -13,7 +23,7 @@ const Users = ( {users, followingProgress, unFollow, follow} ) => {
                                 unFollow={unFollow} 
                                 follow={follow}/> )       
             }
-        </div>
+        </UserContent>
     );
 }
 export default Users;

@@ -1,17 +1,25 @@
 import React from 'react';
 import ProfileLeft from './profileLeft/ProfileLeft';
-import s from './Profile.module.sass';
+import cover from '../../assets/img/cover.jpg';
 import ProfileContent from './profileContent/ProfileContent';
 import Loader from './../common/loader/Loader';
+import styled from 'styled-components';
 
 const Profile = ({profile, status, updateUserStatus, isOwner, savePhoto, saveProfile}) => {
+
+  const Cover = styled.div`
+    height: 240px;
+    background-image: url(${cover});
+    background-size: cover;
+    background-position: center;
+  `;
   
   if (!profile) {
     return <Loader />
   }
   return (
     <>
-      <div className={s.cover}></div>
+      <Cover></Cover>
       <ProfileLeft profile={profile}
       isOwner={isOwner}
       savePhoto={savePhoto}

@@ -1,62 +1,77 @@
 import React from 'react';
-import s from './ProfileInfo.module.sass';
 import { reduxForm, Field } from 'redux-form'
 import { required, maxLength } from '../../../../utils/validators';
-import { Input, TextArea } from '../../../common/formControls/FormControls';
-import style from '../../../common/formControls/FormControls.module.sass';
-import { MainMediumButton } from '../../../common/buttons/Buttons';
+import { FormInput, FormTextArea, FormError } from '../../../common/formControls/FormControls';
+import { MediumButton } from '../../../common/buttons/Buttons';
+import styled from 'styled-components';
 
 const maxLength50 = maxLength(50);
 const maxLength20 = maxLength(20);
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
+
+  const Form = styled.form`
+    max-width: 350px;
+  `;
+  const Description = styled.div`
+    margin-bottom: 10px;
+  `;
+  const Name = styled.div`
+    text-transform: capitalize;
+  `;
+  const Contacts = styled.div`
+    margin-bottom: 5px;
+    a {
+      font-style: italic;
+      font-size: 13px;
+    }
+  `;
+
     return (
-      <form className={s.profileForm} onSubmit={handleSubmit}>
-        { error && <div className={style.formError}>
-            {error}</div> 
+      <Form onSubmit={handleSubmit}>
+        { error && <FormError error={error} /> 
         }
-        <div className={s.description}>
-            <div className={s.name}>
+        <Description>
+            <Name>
                 <span><b>Name: </b></span>
                 <Field name="fullName" 
                 placeholder="Name"
-                component={Input}
+                component={FormInput}
                 validate={[required, maxLength20]}/>
-            </div>
+            </Name>
             <div>
                 <span><b>About me: </b></span>
                 <Field name="aboutMe"
                 placeholder="About me"
-                component={TextArea}
+                component={FormTextArea}
                 validate={[required, maxLength50]}/>
             </div>
             <div>
-                <span><b>Looking for a job: </b></span>
+                <div><b>Looking for a job: </b></div>
                 <Field name="lookingForAJob"
                 type="checkbox"
-                className={s.check}
-                component={Input}/>
+                component="input"/>
             </div>
             <div>
                 <span><b>Professional skills: </b></span>
                 <Field name="lookingForAJobDescription" 
                 placeholder="List your skills here"
-                component={TextArea}
+                component={FormTextArea}
                 validate={[required, maxLength50]}/>
             </div>
-        </div>   
-        <div className={s.contacts}>
+        </Description>   
+        <Contacts>
           {Object.keys(profile.contacts).filter(key => key !== 'mainLink' && key !== 'vk').map(key => {
           return <div key={key}>
               <span><b>{key}: </b></span>
               <Field name={`contacts.${key}`} 
                 placeholder={key}
-                component={Input}/>
+                component={FormInput}/>
           </div> 
           })}
-        </div>
-        <div><MainMediumButton text="Save"/></div>
-      </form>
+        </Contacts>
+        <div><MediumButton text="Save"/></div>
+      </Form>
     );
 }
 

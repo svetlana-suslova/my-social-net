@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-import s from './UsersPaginator.module.sass';
 import classNames from "classnames";
+import s from './UsersPaginator.module.sass';
+import { PaginatorControl } from '../../common/buttons/Buttons';
+import LeftPanel from '../../common/blocks/LeftPanel';
 
 const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged, portionSize} ) => {
+    
     const pagesCount = Math.ceil(totalUsersCount / pageSize);
     const pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -14,10 +17,10 @@ const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged,
     const rightPortionPageNumber = portionNumber * portionSize;
 
     return (
-        <div className={s.paginator}>
+        <LeftPanel>
             {
                 portionNumber > 1 &&
-                <button className={s.prev} onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> 
+                <PaginatorControl onClick={() => { setPortionNumber(portionNumber - 1) }} text="PREV" /> 
                 
             }
             {
@@ -29,10 +32,10 @@ const UsersPaginator = ( {totalUsersCount, pageSize, currentPage, onPageChanged,
             }
             {
                 portionCount > portionNumber &&
-                <button className={s.next} onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> 
+                <PaginatorControl onClick={() => { setPortionNumber(portionNumber + 1) }} text="NEXT" />
                 
             }
-        </div>
+        </LeftPanel>
     );
 }
 export default UsersPaginator;

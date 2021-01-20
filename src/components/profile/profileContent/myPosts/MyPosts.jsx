@@ -1,29 +1,42 @@
 import React from 'react';
 import Post from './Post';
-import s from './MyPosts.module.sass';
 import { reduxForm, Field } from 'redux-form';
 import { required, maxLength } from '../../../../utils/validators';
-import { TextArea } from '../../../common/formControls/FormControls';
-import { MainMediumButton } from '../../../common/buttons/Buttons';
+import { FormTextArea } from '../../../common/formControls/FormControls';
+import { MediumButton } from '../../../common/buttons/Buttons';
+import styled from 'styled-components';
 
 const maxLength10 = maxLength(50);
+  const ProfileWrapper = styled.div`
+    background: #ffffff;
+    line-height: 25px;
+    padding: 15px;
+    margin-left: 130px;
+  `;
+  const Form = styled.form`
+    max-width: 350px;
+  `;
+  const Posts = styled.div`
+    margin-top: 20px;
+  `;
 
 const AddPostsForm = ({handleSubmit, isOwner}) => {
+
   return (
     <>
       {
         isOwner &&
-        <form className={s.profileForm} onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <div>
                 <Field name="newPostText" 
                 placeholder="Add your post" 
-                component={TextArea}
+                component={FormTextArea}
                 validate={[required, maxLength10]}/>
             </div>
-            <div className={s.formButton}>
-              <MainMediumButton text="Add post"/>
+            <div>
+              <MediumButton text="Add post"/>
             </div>
-        </form>
+        </Form>
       }
     </> 
   )       
@@ -41,12 +54,12 @@ const MyPosts = ({posts, addPost, profile, isOwner}) => {
   }
 
   return (
-    <div className={s.profileWrapper}>
+    <ProfileWrapper>
       <AddPostsReduxForm onSubmit={onPostAdd} isOwner={isOwner}/>
-      <div className={s.posts}>
+      <Posts>
         {postsElements}
-      </div>  
-    </div>
+      </Posts>  
+    </ProfileWrapper>
   );
 }
 export default MyPosts;

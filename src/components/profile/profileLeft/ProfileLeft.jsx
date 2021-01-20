@@ -1,20 +1,27 @@
 import React from 'react';
 import ProfileStatus from './profileStatus/ProfileStatus';
-import s from './ProfileLeft.module.sass';
 import ProfileAvatar from '../profileAvatar/ProfileAvatar';
+import styled from 'styled-components';
+import LeftPanel from '../../common/blocks/LeftPanel';
 
 const ProfileLeft = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
 
+  const Name = styled.h2`
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+  `;
+
   return (
-    <div className={s.personalProfile}>
+    <LeftPanel>
       <ProfileAvatar profile={profile} 
       isOwner={isOwner}
       savePhoto={savePhoto} />
-      <h2 className={s.name}>{profile.fullName}</h2>
+      <Name>{profile.fullName}</Name>
       <ProfileStatus isOwner ={isOwner} 
       status={status} 
       updateUserStatus={updateUserStatus} />
-    </div>
+    </LeftPanel>
   );
 }
 

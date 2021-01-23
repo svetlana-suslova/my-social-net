@@ -1,6 +1,10 @@
 # Demo:
-Live demo is unavailable, because of the server restrictions
-https://drive.google.com/file/d/1zBrPZKoc3lJPhqInpSa8iVVWNgUYm5W8/view?usp=sharing
+Live demo is unavailable, because of the app's server restrictions.
+
+#
+![alt tag](src/assets/img/socialnetUI.png "UI")
+
+
 # Locally:
 But you can download the app and run it locally (please select master branch).
 In the project directory:
@@ -22,12 +26,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
   <li>Create React App</li>
   <li>React</li>
   <li>ES6</li>
+  <li>AJAX</li>
   <li>axios</li>
   <li>react-router-dom</li>
   <li>Redux</li>
   <li>redux-thunk</li>
   <li>React Hooks</li>
-  <li>redux-form/li>
+  <li>redux-form</li>
   <li>reactstrap</li>
   <li>styled-components</li>
   <li>classnames</li>

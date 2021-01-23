@@ -3,32 +3,31 @@ import {NavLink} from 'react-router-dom';
 import DropDown from './dropdown/DropDown';
 import styled from 'styled-components';
 
-
-const Navbar = ({login, logOut}) => {
-
-    const NavBar = styled.nav`
+const NavBarStyled = styled.nav`
         display: flex;
     `;
 
-    const NavItem = styled.div`
-        font-size: 15px;
-        padding: 0 30px;
-        a, a:focus {
-            color: #ffffff;
-            text-decoration: none;
-            cursor: pointer;
-            i {
-                padding: 3px;
-                font-size: 18px;
-            }
-            .fa-globe {
-                font-size: 17px;
-            }
-        }        
-    `;
+const NavItem = styled.div`
+    font-size: 15px;
+    padding: 0 30px;
+    a, a:focus {
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+        i {
+            padding: 3px;
+            font-size: 18px;
+        }
+        .fa-globe {
+            font-size: 17px;
+        }
+    }        
+`;
+
+const Navbar = ({login, logOut}) => {
 
     return (
-        <NavBar>
+        <NavBarStyled>
             <NavItem>
                 <NavLink to='/profile' title="Profile">
                     <span className="hidden-xs hidden-sm">Profile</span> 
@@ -57,7 +56,7 @@ const Navbar = ({login, logOut}) => {
                 <DropDown login={login}
                 logOut={logOut} />
             </NavItem> 
-      </NavBar>    
+      </NavBarStyled>    
     );
 }
 export default Navbar;

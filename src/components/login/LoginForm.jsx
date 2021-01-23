@@ -5,11 +5,11 @@ import { required } from '../../utils/validators';
 import { LoginButton } from '../common/buttons/Buttons';
 import styled from 'styled-components';
 
-const LoginForm = ({handleSubmit, error, captchaUrl}) => {
+const Captcha = styled.img`
+    width: auto;
+`;
 
-    const Captcha = styled.img`
-        width: auto;
-    `;
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
 
     return (
         <form onSubmit={handleSubmit}>

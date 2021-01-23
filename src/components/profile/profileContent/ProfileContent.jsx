@@ -7,18 +7,18 @@ import MyPostsContainer from './myPosts/MyPostsContainer';
 import MessagesContainer from './messages/MessagesContainer';
 import styled from 'styled-components';
 
+const TabBar = styled(Nav)`
+  padding-left: 130px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  a, a:link, a:visited, a:focus, &:hover {
+    color: #404040;
+    text-decoration: none;
+    cursor: pointer;
+  }
+`;
 
 const ProfileContent = ({profile, isOwner, saveProfile}) => {
-  const TabBar = styled(Nav)`
-    padding-left: 130px;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    a, a:link, a:visited, a:focus, &:hover {
-      color: #404040;
-      text-decoration: none;
-      cursor: pointer;
-    }
-  `;
 
   const [activeTab, setActiveTab] = useState('2');
 

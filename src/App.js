@@ -14,6 +14,12 @@ import styled from 'styled-components';
 import {withSuspense} from './hoc/withSuspense';
 const ProfileContainer = React.lazy(() => import('./components/profile/ProfileContainer'));
 
+const AppWrapper = styled.div`
+  width: 1000px;
+  padding-top: 50px;
+  margin-top: 0px;
+  margin-left: 240px;
+`;
 class App extends Component {
   
   componentDidCatch() {
@@ -25,13 +31,6 @@ class App extends Component {
   }
 
   render() {
-
-    const AppWrapper = styled.div`
-      width: 1000px;
-      padding-top: 50px;
-      margin-top: 0px;
-      margin-left: 240px;
-    `;
 
     if (!this.props.initialized) {
       return <Loader />

@@ -6,19 +6,20 @@ import { FormTextArea } from '../../../common/formControls/FormControls';
 import { MediumButton } from '../../../common/buttons/Buttons';
 import styled from 'styled-components';
 
+const ProfileWrapper = styled.div`
+  background: #ffffff;
+  line-height: 25px;
+  padding: 15px;
+  margin-left: 130px;
+`;
+const Form = styled.form`
+  max-width: 350px;
+`;
+const Posts = styled.div`
+  margin-top: 20px;
+`;
+
 const maxLength10 = maxLength(50);
-  const ProfileWrapper = styled.div`
-    background: #ffffff;
-    line-height: 25px;
-    padding: 15px;
-    margin-left: 130px;
-  `;
-  const Form = styled.form`
-    max-width: 350px;
-  `;
-  const Posts = styled.div`
-    margin-top: 20px;
-  `;
 
 const AddPostsForm = ({handleSubmit, isOwner}) => {
 

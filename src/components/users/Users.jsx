@@ -2,17 +2,17 @@ import React from 'react';
 import User from './User';
 import styled from 'styled-components';
 
-const Users = ( {users, followingProgress, unFollow, follow} ) => {
+const UserContent = styled.div`
+    background: #ffffff;
+    line-height: 25px;
+    padding: 15px;
+    margin-left: 130px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+`;
 
-    const UserContent = styled.div`
-        background: #ffffff;
-        line-height: 25px;
-        padding: 15px;
-        margin-left: 130px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    `;
+const Users = ( {users, followingProgress, unFollow, follow} ) => {
     
     return (
         <UserContent>

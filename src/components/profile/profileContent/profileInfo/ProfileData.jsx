@@ -1,21 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ProfileData = ({profile, isOwner, goToEditMode}) => {
+const Description = styled.div`
+  margin-bottom: 10px;
+`;
+const Name = styled.div`
+  text-transform: capitalize;
+`;
+const Contacts = styled.div`
+  margin-bottom: 5px;
+  a {
+    font-style: italic;
+    font-size: 13px;
+  }
+`;
 
-  const Description = styled.div`
-    margin-bottom: 10px;
-  `;
-  const Name = styled.div`
-    text-transform: capitalize;
-  `;
-  const Contacts = styled.div`
-    margin-bottom: 5px;
-    a {
-      font-style: italic;
-      font-size: 13px;
-    }
-  `;
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
 
   return (
     <>

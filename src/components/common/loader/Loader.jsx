@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import loader from '../../../assets/img/loader.svg'
+import loader from '../../../assets/img/loader.svg';
+
+const StyledLoader = styled.div`
+  text-align: center;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+`;
 
 const Loader = () => {
-
-  const Loader = styled.div`
-    text-align: center;
-    img {
-      width: 80px;
-      height: 80px;
-    }
-  `;
     return (
-        <Loader> 
+        <StyledLoader> 
           <img src={loader} alt="loader"/>
-        </Loader>
+        </StyledLoader>
     );   
 }
 export default Loader;

@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
-
-  const Status = styled.span`
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-    &:hover {
-      cursor: pointer;
-    }
+const Status = styled.span`
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
-  const Disabled = styled.span`
-    pointer-events: none;
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-  `;
-  const StatusEdit = styled.input`
-    margin: 0 auto;
-    min-width: 180px;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    box-shadow: 5px 3px 5px 6px rgba(237,241,245,0.8);
-    &:focus {
-      outline: 1px solid #edf1f5;
-    }   
-  `;
+const Disabled = styled.span`
+  pointer-events: none;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+`;
+const StatusEdit = styled.input`
+  margin: 0 auto;
+  min-width: 180px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  box-shadow: 5px 3px 5px 6px rgba(237,241,245,0.8);
+  &:focus {
+    outline: 1px solid #edf1f5;
+  }   
+`;
+
+const ProfileStatus = ({status, updateUserStatus, isOwner}) => {
 
   let [editMode, setEditMode] = useState(false);
   let [actualStatus, setStatus] = useState(status);

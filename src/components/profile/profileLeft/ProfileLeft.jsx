@@ -4,13 +4,13 @@ import ProfileAvatar from '../profileAvatar/ProfileAvatar';
 import styled from 'styled-components';
 import LeftPanel from '../../common/blocks/LeftPanel';
 
-const ProfileLeft = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
+const Name = styled.h2`
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+`;
 
-  const Name = styled.h2`
-    text-align: center;
-    font-size: 22px;
-    font-weight: 600;
-  `;
+const ProfileLeft = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
 
   return (
     <LeftPanel>

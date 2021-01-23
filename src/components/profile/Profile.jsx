@@ -5,15 +5,15 @@ import ProfileContent from './profileContent/ProfileContent';
 import Loader from './../common/loader/Loader';
 import styled from 'styled-components';
 
+const Cover = styled.div`
+  height: 240px;
+  background-image: url(${cover});
+  background-size: cover;
+  background-position: center;
+`;
+
 const Profile = ({profile, status, updateUserStatus, isOwner, savePhoto, saveProfile}) => {
 
-  const Cover = styled.div`
-    height: 240px;
-    background-image: url(${cover});
-    background-size: cover;
-    background-position: center;
-  `;
-  
   if (!profile) {
     return <Loader />
   }

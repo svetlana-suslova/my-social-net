@@ -5,27 +5,27 @@ import { FormInput, FormTextArea, FormError } from '../../../common/formControls
 import { MediumButton } from '../../../common/buttons/Buttons';
 import styled from 'styled-components';
 
+const Form = styled.form`
+  max-width: 350px;
+`;
+const Description = styled.div`
+  margin-bottom: 10px;
+`;
+const Name = styled.div`
+  text-transform: capitalize;
+`;
+const Contacts = styled.div`
+  margin-bottom: 5px;
+  a {
+    font-style: italic;
+    font-size: 13px;
+  }
+`;
+
 const maxLength50 = maxLength(50);
 const maxLength20 = maxLength(20);
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
-
-  const Form = styled.form`
-    max-width: 350px;
-  `;
-  const Description = styled.div`
-    margin-bottom: 10px;
-  `;
-  const Name = styled.div`
-    text-transform: capitalize;
-  `;
-  const Contacts = styled.div`
-    margin-bottom: 5px;
-    a {
-      font-style: italic;
-      font-size: 13px;
-    }
-  `;
 
     return (
       <Form onSubmit={handleSubmit}>

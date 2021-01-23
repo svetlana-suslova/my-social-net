@@ -4,23 +4,23 @@ import userPhoto from '../../assets/img/avatar.png';
 import {NavLink} from 'react-router-dom';
 import { SmallButton, InvertedSmallButton } from '../common/buttons/Buttons';
 
+const UserItem = styled.div`
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+const UserPhoto = styled.div`
+    width: 110px;
+    height: 110px;
+    img {
+        border-radius: 50%;
+    }
+`;
+
 const User = ( {user, followingProgress, unFollow, follow} ) => {
-    
-    const UserItem = styled.div`
-        padding: 15px 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    `;
-    const UserPhoto = styled.div`
-        width: 110px;
-        height: 110px;
-        img {
-            border-radius: 50%;
-        }
-    `;
-    
+        
     return (   
         <UserItem>
                 <UserPhoto>
